@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1262074387">
+  <component name="DataSourceManagerImpl" format="xml" hash="1246755856">
     <data-source source="LOCAL" name="Dental dev" uuid="a09ac023-7fa5-46c8-b0e1-9b6679e7e438">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>

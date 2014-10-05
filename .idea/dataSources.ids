@@ -54,27 +54,6 @@
       <index name="FK_fglr19v76iy4kjip6nf33q99b" unique="false" columns="city_id"/>
       <index name="FK_nyyg5dlcs74rm1girctd3mubi" unique="false" columns="country_id"/>
     </table>
-    <table name="body" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="chest" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="height" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="weight" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="FK_h8a4aaph7jk6y7ym6js46i31c" table="profile" schema="" catalog="dental_dev" columns="body_id"/>
-    </table>
-    <table name="body_raise" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="chest" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="date" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
-      <column name="height" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="profile_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="weight" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_aq0r36ecw0hgjceu5emyt8kwg" columns="profile_id" ref-table="profile" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="FK_aq0r36ecw0hgjceu5emyt8kwg" unique="false" columns="profile_id"/>
-    </table>
     <table name="city" schema="" catalog="dental_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
       <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -82,17 +61,6 @@
       <primary-key name="PRIMARY" columns="id"/>
       <exported-key name="FK_fglr19v76iy4kjip6nf33q99b" table="address" schema="" catalog="dental_dev" columns="city_id"/>
       <index name="UK_9s1n56j4o997fpcp1do8juel1" unique="true" columns="city"/>
-    </table>
-    <table name="claim" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="from_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="to_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_kwkcmn4ksq80lpyth4w9kpwys" columns="to_id" ref-table="profile" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_5t24tdirvc2g1rwuosopbqyg9" columns="from_id" ref-table="profile" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="FK_5t24tdirvc2g1rwuosopbqyg9" unique="false" columns="from_id"/>
-      <index name="FK_kwkcmn4ksq80lpyth4w9kpwys" unique="false" columns="to_id"/>
     </table>
     <table name="country" schema="" catalog="dental_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
@@ -102,45 +70,62 @@
       <exported-key name="FK_nyyg5dlcs74rm1girctd3mubi" table="address" schema="" catalog="dental_dev" columns="country_id"/>
       <index name="UK_3s51q344kj9jse05r86moo9ka" unique="true" columns="country"/>
     </table>
+    <table name="dentist" schema="" catalog="dental_dev" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="profile_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="rating_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_f0bevjjy8w0hgr43bihts57lq" columns="rating_id" ref-table="rating" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_gy8isr2retye7n1g9p44ta6sd" columns="profile_id" ref-table="profile" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_76ve2aa11e92716yw2l43vlax" table="patient" schema="" catalog="dental_dev" columns="dentist_id"/>
+      <index name="FK_f0bevjjy8w0hgr43bihts57lq" unique="false" columns="rating_id"/>
+      <index name="FK_gy8isr2retye7n1g9p44ta6sd" unique="false" columns="profile_id"/>
+    </table>
+    <table name="mouth" schema="" catalog="dental_dev" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_r942ln0cs97gnetcmoied2mu3" table="patient" schema="" catalog="dental_dev" columns="mouth_id"/>
+      <exported-key name="FK_rqk9cx1eesyomuqxqo05fyofa" table="tooth" schema="" catalog="dental_dev" columns="mouth_id"/>
+    </table>
+    <table name="patient" schema="" catalog="dental_dev" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="dentist_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="mouth_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="profile_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_6hq2ml5q7egnai3v97hj632f" columns="profile_id" ref-table="profile" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_76ve2aa11e92716yw2l43vlax" columns="dentist_id" ref-table="dentist" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_r942ln0cs97gnetcmoied2mu3" columns="mouth_id" ref-table="mouth" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_6hq2ml5q7egnai3v97hj632f" unique="false" columns="profile_id"/>
+      <index name="FK_76ve2aa11e92716yw2l43vlax" unique="false" columns="dentist_id"/>
+      <index name="FK_r942ln0cs97gnetcmoied2mu3" unique="false" columns="mouth_id"/>
+    </table>
     <table name="profile" schema="" catalog="dental_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
       <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="address_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="body_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="date_of_birth" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
       <column name="firstname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="gender" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="lastname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="patronimic" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="phone" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="profile_type_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="rating_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_bhvb1dy2i1mw8ctkna9xlkyb4" columns="rating_id" ref-table="rating" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_4wjk21ujucxw51o1m39d3c62g" columns="profile_type_id" ref-table="profile_type" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_h4lfia6yb55m850jjmcftwn2p" columns="address_id" ref-table="address" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_h8a4aaph7jk6y7ym6js46i31c" columns="body_id" ref-table="body" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_aq0r36ecw0hgjceu5emyt8kwg" table="body_raise" schema="" catalog="dental_dev" columns="profile_id"/>
-      <exported-key name="FK_kwkcmn4ksq80lpyth4w9kpwys" table="claim" schema="" catalog="dental_dev" columns="to_id"/>
-      <exported-key name="FK_5t24tdirvc2g1rwuosopbqyg9" table="claim" schema="" catalog="dental_dev" columns="from_id"/>
-      <exported-key name="FK_87mneflu9on0gjiq0f9olhitn" table="sportsman" schema="" catalog="dental_dev" columns="profile_id"/>
-      <exported-key name="FK_9pe18u9xktxq16qkikrma7qy7" table="trainer" schema="" catalog="dental_dev" columns="profile_id"/>
+      <exported-key name="FK_gy8isr2retye7n1g9p44ta6sd" table="dentist" schema="" catalog="dental_dev" columns="profile_id"/>
+      <exported-key name="FK_6hq2ml5q7egnai3v97hj632f" table="patient" schema="" catalog="dental_dev" columns="profile_id"/>
       <exported-key name="FK_1mcjtpxmwom9h9bf2q0k412e0" table="user" schema="" catalog="dental_dev" columns="profile_id"/>
-      <index name="FK_4wjk21ujucxw51o1m39d3c62g" unique="false" columns="profile_type_id"/>
-      <index name="FK_bhvb1dy2i1mw8ctkna9xlkyb4" unique="false" columns="rating_id"/>
       <index name="FK_h4lfia6yb55m850jjmcftwn2p" unique="false" columns="address_id"/>
-      <index name="FK_h8a4aaph7jk6y7ym6js46i31c" unique="false" columns="body_id"/>
-    </table>
-    <table name="profile_type" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="FK_4wjk21ujucxw51o1m39d3c62g" table="profile" schema="" catalog="dental_dev" columns="profile_type_id"/>
     </table>
     <table name="rating" schema="" catalog="dental_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
       <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="points" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="FK_bhvb1dy2i1mw8ctkna9xlkyb4" table="profile" schema="" catalog="dental_dev" columns="rating_id"/>
+      <exported-key name="FK_f0bevjjy8w0hgr43bihts57lq" table="dentist" schema="" catalog="dental_dev" columns="rating_id"/>
     </table>
     <table name="role" schema="" catalog="dental_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
@@ -150,116 +135,17 @@
       <exported-key name="FK_it77eq964jhfqtu54081ebtio" table="user_role" schema="" catalog="dental_dev" columns="role_id"/>
       <index name="UK_irsamgnera6angm0prq1kemt2" unique="true" columns="authority"/>
     </table>
-    <table name="sport_club" schema="" catalog="dental_dev" type="TABLE">
+    <table name="tooth" schema="" catalog="dental_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
       <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="lat" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="lng" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="FK_pom0h0t5jo8djisf264f61is4" table="trainer" schema="" catalog="dental_dev" columns="sport_club_id"/>
-    </table>
-    <table name="sport_program" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="date_created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
-      <column name="last_updated" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="color" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="exist" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="mouth_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="repetition" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="runner_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="sport_program_group_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="sport_program_type_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="status_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="trainer_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="weight" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_ph9cj6tqm0ew8sidn29i9y2me" columns="trainer_id" ref-table="trainer" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_ajalxq3mq0l8j9cuxw1ni61dr" columns="runner_id" ref-table="sportsman" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_fvr7g4mks0545uo7o64760ebt" columns="sport_program_group_id" ref-table="sport_program_group" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_gglayk1739q0e3a3lxln213y4" columns="status_id" ref-table="sport_program_status" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_nj00lr2hej1j64k2q1ggf7edi" columns="sport_program_type_id" ref-table="sport_program_type" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="FK_ajalxq3mq0l8j9cuxw1ni61dr" unique="false" columns="runner_id"/>
-      <index name="FK_fvr7g4mks0545uo7o64760ebt" unique="false" columns="sport_program_group_id"/>
-      <index name="FK_gglayk1739q0e3a3lxln213y4" unique="false" columns="status_id"/>
-      <index name="FK_nj00lr2hej1j64k2q1ggf7edi" unique="false" columns="sport_program_type_id"/>
-      <index name="FK_ph9cj6tqm0ew8sidn29i9y2me" unique="false" columns="trainer_id"/>
-    </table>
-    <table name="sport_program_group" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="trainer_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_3bg5o057ny89l7mymhdrievxr" columns="trainer_id" ref-table="trainer" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_fvr7g4mks0545uo7o64760ebt" table="sport_program" schema="" catalog="dental_dev" columns="sport_program_group_id"/>
-      <index name="FK_3bg5o057ny89l7mymhdrievxr" unique="false" columns="trainer_id"/>
-    </table>
-    <table name="sport_program_status" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="status" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="FK_gglayk1739q0e3a3lxln213y4" table="sport_program" schema="" catalog="dental_dev" columns="status_id"/>
-    </table>
-    <table name="sport_program_template" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="repetition" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="trainer_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="weight" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_gmb1dq30udiy15he5350bin6u" columns="trainer_id" ref-table="trainer" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="FK_gmb1dq30udiy15he5350bin6u" unique="false" columns="trainer_id"/>
-    </table>
-    <table name="sport_program_template_group" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="FK_j3ty86x11e8dd3tcucq0wtght" table="trainer_sport_program_template_group" schema="" catalog="dental_dev" columns="sport_program_template_group_id"/>
-    </table>
-    <table name="sport_program_type" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="FK_nj00lr2hej1j64k2q1ggf7edi" table="sport_program" schema="" catalog="dental_dev" columns="sport_program_type_id"/>
-    </table>
-    <table name="sportsman" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="profile_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="trainer_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_76sesygkqc8odi7fiecxxfv9k" columns="trainer_id" ref-table="trainer" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_87mneflu9on0gjiq0f9olhitn" columns="profile_id" ref-table="profile" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_ajalxq3mq0l8j9cuxw1ni61dr" table="sport_program" schema="" catalog="dental_dev" columns="runner_id"/>
-      <index name="FK_76sesygkqc8odi7fiecxxfv9k" unique="false" columns="trainer_id"/>
-      <index name="FK_87mneflu9on0gjiq0f9olhitn" unique="false" columns="profile_id"/>
-    </table>
-    <table name="trainer" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="profile_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="sport_club_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_pom0h0t5jo8djisf264f61is4" columns="sport_club_id" ref-table="sport_club" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_9pe18u9xktxq16qkikrma7qy7" columns="profile_id" ref-table="profile" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_ph9cj6tqm0ew8sidn29i9y2me" table="sport_program" schema="" catalog="dental_dev" columns="trainer_id"/>
-      <exported-key name="FK_3bg5o057ny89l7mymhdrievxr" table="sport_program_group" schema="" catalog="dental_dev" columns="trainer_id"/>
-      <exported-key name="FK_gmb1dq30udiy15he5350bin6u" table="sport_program_template" schema="" catalog="dental_dev" columns="trainer_id"/>
-      <exported-key name="FK_76sesygkqc8odi7fiecxxfv9k" table="sportsman" schema="" catalog="dental_dev" columns="trainer_id"/>
-      <exported-key name="FK_pd9as3641oqgpiw896uu4rptx" table="trainer_sport_program_template_group" schema="" catalog="dental_dev" columns="trainer_sport_program_template_groups_id"/>
-      <index name="FK_9pe18u9xktxq16qkikrma7qy7" unique="false" columns="profile_id"/>
-      <index name="FK_pom0h0t5jo8djisf264f61is4" unique="false" columns="sport_club_id"/>
-    </table>
-    <table name="trainer_sport_program_template_group" schema="" catalog="dental_dev" type="TABLE">
-      <column name="trainer_sport_program_template_groups_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="sport_program_template_group_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <foreign-key name="FK_pd9as3641oqgpiw896uu4rptx" columns="trainer_sport_program_template_groups_id" ref-table="trainer" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_j3ty86x11e8dd3tcucq0wtght" columns="sport_program_template_group_id" ref-table="sport_program_template_group" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="FK_j3ty86x11e8dd3tcucq0wtght" unique="false" columns="sport_program_template_group_id"/>
-      <index name="FK_pd9as3641oqgpiw896uu4rptx" unique="false" columns="trainer_sport_program_template_groups_id"/>
+      <foreign-key name="FK_rqk9cx1eesyomuqxqo05fyofa" columns="mouth_id" ref-table="mouth" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_rqk9cx1eesyomuqxqo05fyofa" unique="false" columns="mouth_id"/>
     </table>
     <table name="user" schema="" catalog="dental_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
@@ -269,7 +155,7 @@
       <column name="enabled" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="password_expired" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
-      <column name="profile_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="profile_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="FK_1mcjtpxmwom9h9bf2q0k412e0" columns="profile_id" ref-table="profile" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
@@ -291,8 +177,8 @@
       <column name="city_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="country_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_nyyg5dlcs74rm1girctd3mubi" columns="country_id" ref-table="country" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_fglr19v76iy4kjip6nf33q99b" columns="city_id" ref-table="city" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_nyyg5dlcs74rm1girctd3mubi" columns="country_id" ref-table="country" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="FK_h4lfia6yb55m850jjmcftwn2p" table="profile" schema="" catalog="fitupness" columns="address_id"/>
       <index name="FK_fglr19v76iy4kjip6nf33q99b" unique="false" columns="city_id"/>
       <index name="FK_nyyg5dlcs74rm1girctd3mubi" unique="false" columns="country_id"/>
@@ -332,8 +218,8 @@
       <column name="from_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="to_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_kwkcmn4ksq80lpyth4w9kpwys" columns="to_id" ref-table="profile" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_5t24tdirvc2g1rwuosopbqyg9" columns="from_id" ref-table="profile" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_kwkcmn4ksq80lpyth4w9kpwys" columns="to_id" ref-table="profile" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FK_5t24tdirvc2g1rwuosopbqyg9" unique="false" columns="from_id"/>
       <index name="FK_kwkcmn4ksq80lpyth4w9kpwys" unique="false" columns="to_id"/>
     </table>
@@ -356,13 +242,13 @@
       <column name="profile_type_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="rating_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_bhvb1dy2i1mw8ctkna9xlkyb4" columns="rating_id" ref-table="rating" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_4wjk21ujucxw51o1m39d3c62g" columns="profile_type_id" ref-table="profile_type" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_bhvb1dy2i1mw8ctkna9xlkyb4" columns="rating_id" ref-table="rating" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_h4lfia6yb55m850jjmcftwn2p" columns="address_id" ref-table="address" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_h8a4aaph7jk6y7ym6js46i31c" columns="body_id" ref-table="body" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="FK_aq0r36ecw0hgjceu5emyt8kwg" table="body_raise" schema="" catalog="fitupness" columns="profile_id"/>
-      <exported-key name="FK_kwkcmn4ksq80lpyth4w9kpwys" table="claim" schema="" catalog="fitupness" columns="to_id"/>
       <exported-key name="FK_5t24tdirvc2g1rwuosopbqyg9" table="claim" schema="" catalog="fitupness" columns="from_id"/>
+      <exported-key name="FK_kwkcmn4ksq80lpyth4w9kpwys" table="claim" schema="" catalog="fitupness" columns="to_id"/>
       <exported-key name="FK_87mneflu9on0gjiq0f9olhitn" table="sportsman" schema="" catalog="fitupness" columns="profile_id"/>
       <exported-key name="FK_9pe18u9xktxq16qkikrma7qy7" table="trainer" schema="" catalog="fitupness" columns="profile_id"/>
       <exported-key name="FK_1mcjtpxmwom9h9bf2q0k412e0" table="user" schema="" catalog="fitupness" columns="profile_id"/>
@@ -416,11 +302,11 @@
       <column name="trainer_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="weight" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_ph9cj6tqm0ew8sidn29i9y2me" columns="trainer_id" ref-table="trainer" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_ajalxq3mq0l8j9cuxw1ni61dr" columns="runner_id" ref-table="sportsman" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_fvr7g4mks0545uo7o64760ebt" columns="sport_program_group_id" ref-table="sport_program_group" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_gglayk1739q0e3a3lxln213y4" columns="status_id" ref-table="sport_program_status" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_nj00lr2hej1j64k2q1ggf7edi" columns="sport_program_type_id" ref-table="sport_program_type" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_ph9cj6tqm0ew8sidn29i9y2me" columns="trainer_id" ref-table="trainer" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FK_ajalxq3mq0l8j9cuxw1ni61dr" unique="false" columns="runner_id"/>
       <index name="FK_fvr7g4mks0545uo7o64760ebt" unique="false" columns="sport_program_group_id"/>
       <index name="FK_gglayk1739q0e3a3lxln213y4" unique="false" columns="status_id"/>
@@ -486,8 +372,8 @@
       <column name="profile_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="sport_club_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_pom0h0t5jo8djisf264f61is4" columns="sport_club_id" ref-table="sport_club" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_9pe18u9xktxq16qkikrma7qy7" columns="profile_id" ref-table="profile" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_pom0h0t5jo8djisf264f61is4" columns="sport_club_id" ref-table="sport_club" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="FK_ph9cj6tqm0ew8sidn29i9y2me" table="sport_program" schema="" catalog="fitupness" columns="trainer_id"/>
       <exported-key name="FK_3bg5o057ny89l7mymhdrievxr" table="sport_program_group" schema="" catalog="fitupness" columns="trainer_id"/>
       <exported-key name="FK_gmb1dq30udiy15he5350bin6u" table="sport_program_template" schema="" catalog="fitupness" columns="trainer_id"/>
@@ -499,8 +385,8 @@
     <table name="trainer_sport_program_template_group" schema="" catalog="fitupness" type="TABLE">
       <column name="trainer_sport_program_template_groups_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <column name="sport_program_template_group_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <foreign-key name="FK_pd9as3641oqgpiw896uu4rptx" columns="trainer_sport_program_template_groups_id" ref-table="trainer" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_j3ty86x11e8dd3tcucq0wtght" columns="sport_program_template_group_id" ref-table="sport_program_template_group" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_pd9as3641oqgpiw896uu4rptx" columns="trainer_sport_program_template_groups_id" ref-table="trainer" ref-schema="" ref-catalog="fitupness" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FK_j3ty86x11e8dd3tcucq0wtght" unique="false" columns="sport_program_template_group_id"/>
       <index name="FK_pd9as3641oqgpiw896uu4rptx" unique="false" columns="trainer_sport_program_template_groups_id"/>
     </table>

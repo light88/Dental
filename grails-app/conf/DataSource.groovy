@@ -19,7 +19,7 @@ environments {
             logSql = true
             username = "root"
             password = "rootpass"
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/dental_dev"
 //            url = "jdbc:mysql://localhost:3306/fitupness_dev"
         }

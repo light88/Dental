@@ -4,7 +4,7 @@ class Rating {
 
     int points
 
-    static belongsTo = [profile: Profile]
+    static belongsTo = [dentist: Dentist]
 
     static constraints = {
     }

@@ -50,6 +50,14 @@
             </div>
 
             <div class="form-group">
+                <strong>Patronimic</strong>
+                <g:if test="${user?.hasErrors()}">
+                    <p class="bg-danger"><g:fieldError field="patronimic" bean="${user}"></g:fieldError></p>
+                </g:if>
+                <g:textField class="form-control" type="text" name="patronimic"/>
+            </div>
+
+            <div class="form-group">
                 <strong>login/email</strong>
                 <g:if test="${user?.hasErrors()}">
                     <p class="bg-danger">

@@ -23,9 +23,12 @@
     </div>
 
     <div class="col-md-9">
-        ${profile.firstname}
-        ${profile.lastname}
-        ${profile.phone}
+        id = ${profile.id},
+        firstname = ${profile.firstname},
+        lastname = ${profile.lastname},
+        patronimic = ${profile.patronimic},
+        phone = ${profile.phone},
+        points = ${profile.rating.points},
     </div>
 
 </div>

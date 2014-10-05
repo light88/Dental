@@ -29,13 +29,15 @@ class BootStrap {
 //        UserRole.create(trainer, roleTrainer)
 
 
-        def p1 = [phone: '00000000', username: 'user@gmail.com', lastname: 'UserLast', firstname: 'UserFirst', type: '1', password: '123456']
+        def p1 = [phone: '00000000', username: 'user@gmail.com', lastname: 'UserLast', firstname: 'UserFirst', patronimic: 'qqqqq', password: '123456', gender : true, dateOfBirth : new Date()]
 
-        authService.signup(p1)
+//        authService.signup(p1)
 
-        def p2 = [phone: '00000000', username: 'trainer@gmail.com', lastname: 'TrainerLast', firstname: 'TrainerFirst', type: '2', password: '123456']
+        def p2 = [phone: '00000000', lastname: 'TrainerLast', firstname: 'TrainerFirst', patronimic: 'qqqqq',
+        gender : true, dateOfBirth : new Date()
+        ]
 
-        authService.signup(p2)
+//        authService.signup(p2)
 
 
     }

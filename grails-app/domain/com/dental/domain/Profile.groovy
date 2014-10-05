@@ -6,11 +6,12 @@ class Profile {
     String lastname
     String patronimic
     String phone
+    boolean gender
+    Date dateOfBirth
 
     Address address
-    Rating rating
 
-    static belongsTo = User
+    static belongsTo = User //[only create an instanceof profile when User is saved]
 
     static constraints = {
         phone nullable: true

@@ -8,13 +8,20 @@ class AuthService {
 
     def signup(params) {
 
+        params << [gender : true, dateOfBirth : new Date()]
         def user = new User(params)
+
         def profile = new Profile(params)
         profile.save(flush: true)
-        profile.rating = new Rating(points: 0)
-        profile.rating.validate()
-        profile.save(flush: true)
+
+        def rating = new Rating()
+        rating.save()
+
+        def dentist = new Dentist(profile: profile, rating: rating)
+        dentist.save()
+
         user.profile = profile
+
         if (user.validate() /*&& profile.validate()*/) {
             user.save(flush: true)
 

@@ -42,14 +42,9 @@
                             href="${createLink(controller: 'about')}">About</a></li>
 
                     <sec:ifLoggedIn>
-                        <sec:ifAnyGranted roles="ROLE_SPORTSMAN">
-                            <li <g:if test="${controllerName == 'user'}">class="active"</g:if>><a
-                                    href="${createLink(controller: 'user')}">User profile</a></li>
-                        </sec:ifAnyGranted>
-
-                        <sec:ifAnyGranted roles="ROLE_TRAINER">
-                            <li <g:if test="${controllerName == 'trainer'}">class="active"</g:if>><a
-                                    href="${createLink(controller: 'trainer')}">Trainer proile</a></li>
+                        <sec:ifAnyGranted roles="ROLE_USER">
+                            <li <g:if test="${controllerName == 'patient'}">class="active"</g:if>><a
+                                    href="${createLink(controller: 'patient')}">Patients</a></li>
                         </sec:ifAnyGranted>
 
                         <li><a href="${createLink(controller: 'auth', action: 'doLogout')}">Log out</a></li>

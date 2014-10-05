@@ -9,5 +9,5 @@
 *
 *= require bootstrap
 *= require_self
-*= require signin
+** require signin
 */
