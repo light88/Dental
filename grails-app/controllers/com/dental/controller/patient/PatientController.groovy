@@ -33,7 +33,7 @@ class PatientController {
 
         def list
         if (name)
-            list = Patient.findByDentistAndFirstname(dentist, name)
+            list = Patient.findByDentistAndFirstnameLike(dentist, name)
         else
             list = dentist.patients
 

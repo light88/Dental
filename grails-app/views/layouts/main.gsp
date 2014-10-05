@@ -30,12 +30,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="${createLink(controller: 'home')}" class="navbar-brand">Fitupness Inc.</a>
+                <a href="${createLink(controller: 'home')}" class="navbar-brand">Dentalbook.com</a>
             </div>
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li <g:if test="${controllerName == 'home'}">class=active"</g:if>><a
+                    <li <g:if test="${controllerName == 'home'}">class="active"</g:if>><a
                             href="${createLink(controller: 'home')}">Home</a></li>
 
                     <li <g:if test="${controllerName == 'about'}">class="active"</g:if>><a

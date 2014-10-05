@@ -28,7 +28,6 @@
         lastname = ${profile.lastname},
         patronimic = ${profile.patronimic},
         phone = ${profile.phone},
-        points = ${profile.rating.points},
     </div>
 
 </div>

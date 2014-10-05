@@ -14,36 +14,52 @@
 
 <body>
 
-<div class="row col-md-6 col-md-offset-3 form-group">
-    <h3 class="center">Create new Patient</h3>
-    <g:form action="create" method="post" role="form">
-        <div class="form-group">
-            <strong>Patient FirstName</strong>
-            <g:textField class="form-control" type="text" name="firstname"/>
-        </div>
+<div class="row">
 
-        <div class="form-group">
-            <strong>LastName</strong>
-            <g:textField class="form-control" type="text" name="lastname"/>
-        </div>
+    %{--left column--}%
+    <div class="col-md-3">
+        <ul class="list-group">
+            <a href="${createLink(controller: 'patient', action: 'list')}" class="list-group-item
+            <g:if test="${controllerName == 'patient' && actionName == 'list'}">active</g:if>">List Patients</a>
 
-        <div class="form-group">
-            <strong>Patronimic</strong>
-            <g:textField class="form-control" type="text" name="patronimic"/>
-        </div>
+            <a href="${createLink(controller: 'patient', action: 'newPatient')}" class="list-group-item
+            <g:if test="${controllerName == 'patient' && actionName == 'newPatient'}">active</g:if>">New Patient</a>
+        </ul>
 
-        <div class="form-group">
-            <strong>Gender</strong>
-            <g:textField class="form-control" type="text" name="gender"/>
-        </div>
+    </div>
 
-        <div class="form-group">
-            <strong>date of birth</strong>
-            <input type="date" name="dateOfBirth" class="form-control"/>
-        </div>
+    <div class="col-md-5">
+        <div class="tab-content">
+            <g:form action="create" method="post" role="form">
+                <div class="form-group">
+                    <g:textField class="form-control" type="text" name="firstname" placeholder="FirstName"/>
+                </div>
 
-        <g:submitButton class="btn btn-info col-md-4 pull-right" name="Submit"/>
-    </g:form>
+                <div class="form-group">
+                    <g:textField class="form-control" type="text" name="lastname" placeholder="LastName"/>
+                </div>
+
+                <div class="form-group">
+                    <g:textField class="form-control" type="text" name="patronimic" placeholder="Patronimic"/>
+                </div>
+
+                <div class="form-group">
+                    <g:textField class="form-control" type="text" name="gender" placeholder="Gender"/>
+                </div>
+
+                <div class="form-group">
+                    <g:textField class="form-control" type="text" name="phone" placeholder="Phone"/>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" name="dateOfBirth" class="form-control" placeholder="DOB"/>
+                </div>
+
+                <g:submitButton class="btn btn-info col-md-4 pull-right" name="Submit"/>
+            </g:form>
+        </div>
+    </div>
+
 </div>
 
 </body>
