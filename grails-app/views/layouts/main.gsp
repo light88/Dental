@@ -60,13 +60,13 @@
 <div class="container">
     <g:layoutBody/>
 </div>
-%{--footer--}%
-%{--<div class="navbar navbar-default navbar-fixed-bottom">--}%
-%{--<div class="container">--}%
-%{--<p class="navbar-text pull-left">Copyright</p>--}%
-%{--<a class="navbar-btn btn btn-danger pull-right">Subscribe</a>--}%
-%{--</div>--}%
-%{--</div>--}%
+
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <p class="navbar-text pull-left">Copyright</p>
+        <a class="navbar-btn btn btn-danger pull-right">Subscribe</a>
+    </div>
+</div>
 
 </body>
 </html>

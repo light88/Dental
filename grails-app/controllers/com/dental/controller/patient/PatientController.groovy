@@ -1,20 +1,16 @@
 package com.dental.controller.patient
 
-import com.dental.domain.Dentist
 import com.dental.domain.Patient
 
 class PatientController {
 
+    static defaultAction = "list"
+
     def patientService
-
-    def index() {
-        render 'patient list'
-    }
-
-    def springSecurityService
+    def dentalService
 
     def list() {
-        def dentist = Dentist.findByProfile(springSecurityService.currentUser.profile)
+        def dentist = dentalService.dentist()
         render view: 'list', model: [dentist: dentist, patients: dentist.patients]
     }
 
@@ -27,20 +23,20 @@ class PatientController {
         render 'error'
     }
 
-    def newPatient(){
+    def newPatient() {
         render view: 'new'
     }
 
     def search() {
-        println 'search $params'
         def name = params.name
-        if(!name){
-            return;
-        }
-        def dentist = Dentist.findByProfile(springSecurityService.currentUser.profile)
-        def list = Patient.findByDentistAndFirstname(dentist, name)
-        println list
-        render template: 'patient_table', model: [patients : list]
+        def dentist = dentalService.dentist()
 
+        def list
+        if (name)
+            list = Patient.findByDentistAndFirstname(dentist, name)
+        else
+            list = dentist.patients
+
+        render template: 'patient_table', model: [patients: list]
     }
 }
