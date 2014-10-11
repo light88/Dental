@@ -37,6 +37,7 @@
         <div class="tab-content">
 
             <div class="panel panel-default">
+                ${patients.size}
                 <div class="panel-heading">Patient List</div>
 
                 <table class="table" id="patientsTable">
@@ -82,6 +83,11 @@
     </div>
 
 </div>
+<g:paginate controller="patient" action="list" total="${size}" />
+
+%{--<g:paginate next="Forward" prev="Back"--}%
+            %{--maxsteps="0" controller="profile"--}%
+            %{--action="list" total="${size}" />--}%
 
 </body>
 </html>

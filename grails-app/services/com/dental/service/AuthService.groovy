@@ -1,4 +1,4 @@
-package com.fitupness.service
+package com.dental.service
 
 import com.dental.domain.*
 import grails.transaction.Transactional

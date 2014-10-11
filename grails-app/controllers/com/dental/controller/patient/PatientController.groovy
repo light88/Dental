@@ -9,9 +9,13 @@ class PatientController {
     def patientService
     def dentalService
 
+    final int PER_PAGE = 3;
+
     def list() {
         def dentist = dentalService.dentist()
-        render view: 'list', model: [dentist: dentist, patients: dentist.patients]
+//        def page = params.page
+        render view: 'list', model: [
+                patients: Patient.findAllByDentist(dentist, params), size : dentist.patients.size()]
     }
 
     def create() {

@@ -1,14 +1,13 @@
 package com.fitupness.service
 
-import com.dental.service.PatientService
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
-@TestFor(PatientService)
-class PatientServiceSpec extends Specification {
+@TestFor(DentalService)
+class DentalServiceSpec extends Specification {
 
     def setup() {
     }
