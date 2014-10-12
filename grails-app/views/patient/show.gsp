@@ -55,7 +55,7 @@
         tooth.name = x
 
         $.ajax({
-            url: "${createLink(controller: 'patient', action: 'treatInfo')}",
+            url: "${createLink(controller: 'treatment', action: 'treatInfo')}",
             data: tooth,
             type: 'POST'
         }).done(function (data, textStatus, jqXHR) {
@@ -67,7 +67,7 @@
     function s() {
         tooth.treatment = $('textarea').val()
         $.ajax({
-            url: "${createLink(controller: 'patient', action: 'treat')}",
+            url: "${createLink(controller: 'treatment', action: 'treat')}",
             data: tooth,
             type: 'POST'
         }).done(function (data, textStatus, jqXHR) {

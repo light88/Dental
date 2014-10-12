@@ -48,8 +48,8 @@
       <column name="city_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="country_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_nyyg5dlcs74rm1girctd3mubi" columns="country_id" ref-table="country" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_fglr19v76iy4kjip6nf33q99b" columns="city_id" ref-table="city" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_nyyg5dlcs74rm1girctd3mubi" columns="country_id" ref-table="country" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="FK_j8b4al0gjt5lj9f979r2sf9kf" table="patient" schema="" catalog="dental_dev" columns="address_id"/>
       <exported-key name="FK_h4lfia6yb55m850jjmcftwn2p" table="profile" schema="" catalog="dental_dev" columns="address_id"/>
       <index name="FK_fglr19v76iy4kjip6nf33q99b" unique="false" columns="city_id"/>
@@ -103,9 +103,9 @@
       <column name="patronimic" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="phone" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_r942ln0cs97gnetcmoied2mu3" columns="mouth_id" ref-table="mouth" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_76ve2aa11e92716yw2l43vlax" columns="dentist_id" ref-table="dentist" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_j8b4al0gjt5lj9f979r2sf9kf" columns="address_id" ref-table="address" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_r942ln0cs97gnetcmoied2mu3" columns="mouth_id" ref-table="mouth" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FK_76ve2aa11e92716yw2l43vlax" unique="false" columns="dentist_id"/>
       <index name="FK_j8b4al0gjt5lj9f979r2sf9kf" unique="false" columns="address_id"/>
       <index name="FK_r942ln0cs97gnetcmoied2mu3" unique="false" columns="mouth_id"/>

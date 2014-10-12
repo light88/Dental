@@ -1,28 +1,21 @@
 package com.dental.controller.patient
 import com.dental.domain.Patient
-import com.dental.domain.Tooth
-import com.dental.domain.ToothTreatment
 
 class PatientController {
 
-    static allowedMethods = [create: "POST", treat: "POST"]
-
+    static allowedMethods = [create: "POST"]
     static defaultAction = "list"
 
     def patientService
     def dentalService
 
-    final int PER_PAGE = 3;
-
     def list() {
         def dentist = dentalService.dentist()
-//        def page = params.page
-        render view: 'list', model: [
-                patients: Patient.findAllByDentist(dentist, params), size: dentist.patients.size()]
+        render view: 'list', model: [patients: Patient.findAllByDentist(dentist, params),
+                                     size: dentist.patients.size()]
     }
 
     def create() {
-        println params
         if (patientService.createPatient(params)) {
             redirect action: 'list'
             return
@@ -61,30 +54,11 @@ class PatientController {
      */
     def show() {
         def dentist = dentalService.dentist()
-        def p = dentist.patients.find { it.id == params.long("id", 0L) }
-        if (!p) {
+        def patient = dentist.patients.find { it.id == params.long("id", 0L) }
+        if (!patient) {
             response.sendError(404)
             return
         }
-        [patient: p]
-    }
-
-    def treat() {
-        def dentist = dentalService.dentist()
-        def p = dentist.patients.find { it.id == params.long("id", 0L) }
-
-        def t = Tooth.get(params.id)
-        t.addToTeethTreatment(new ToothTreatment(treatment: params.treatment, date: new Date()))
-        t.save(flush: true)
-        println params
-        render "OK"
-    }
-
-    def treatInfo(){
-        println params.id
-        def tooth = Tooth.get(params.id)
-        def list = ToothTreatment.findAllByTooth(tooth)
-        println list
-        render template: 'tooth_table', model: [treatments : list]
+        [patient: patient]
     }
 }
