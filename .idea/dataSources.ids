@@ -50,6 +50,7 @@
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="FK_nyyg5dlcs74rm1girctd3mubi" columns="country_id" ref-table="country" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_fglr19v76iy4kjip6nf33q99b" columns="city_id" ref-table="city" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_j8b4al0gjt5lj9f979r2sf9kf" table="patient" schema="" catalog="dental_dev" columns="address_id"/>
       <exported-key name="FK_h4lfia6yb55m850jjmcftwn2p" table="profile" schema="" catalog="dental_dev" columns="address_id"/>
       <index name="FK_fglr19v76iy4kjip6nf33q99b" unique="false" columns="city_id"/>
       <index name="FK_nyyg5dlcs74rm1girctd3mubi" unique="false" columns="country_id"/>
@@ -92,15 +93,21 @@
     <table name="patient" schema="" catalog="dental_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
       <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="address_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="date_of_birth" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
       <column name="dentist_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="firstname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="gender" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="lastname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="mouth_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="profile_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="patronimic" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_6hq2ml5q7egnai3v97hj632f" columns="profile_id" ref-table="profile" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_76ve2aa11e92716yw2l43vlax" columns="dentist_id" ref-table="dentist" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_r942ln0cs97gnetcmoied2mu3" columns="mouth_id" ref-table="mouth" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="FK_6hq2ml5q7egnai3v97hj632f" unique="false" columns="profile_id"/>
+      <foreign-key name="FK_76ve2aa11e92716yw2l43vlax" columns="dentist_id" ref-table="dentist" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_j8b4al0gjt5lj9f979r2sf9kf" columns="address_id" ref-table="address" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FK_76ve2aa11e92716yw2l43vlax" unique="false" columns="dentist_id"/>
+      <index name="FK_j8b4al0gjt5lj9f979r2sf9kf" unique="false" columns="address_id"/>
       <index name="FK_r942ln0cs97gnetcmoied2mu3" unique="false" columns="mouth_id"/>
     </table>
     <table name="profile" schema="" catalog="dental_dev" type="TABLE">
@@ -116,7 +123,6 @@
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="FK_h4lfia6yb55m850jjmcftwn2p" columns="address_id" ref-table="address" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="FK_gy8isr2retye7n1g9p44ta6sd" table="dentist" schema="" catalog="dental_dev" columns="profile_id"/>
-      <exported-key name="FK_6hq2ml5q7egnai3v97hj632f" table="patient" schema="" catalog="dental_dev" columns="profile_id"/>
       <exported-key name="FK_1mcjtpxmwom9h9bf2q0k412e0" table="user" schema="" catalog="dental_dev" columns="profile_id"/>
       <index name="FK_h4lfia6yb55m850jjmcftwn2p" unique="false" columns="address_id"/>
     </table>
@@ -145,7 +151,18 @@
       <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="FK_rqk9cx1eesyomuqxqo05fyofa" columns="mouth_id" ref-table="mouth" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_hecow5tjshgx1t852ijb98p45" table="tooth_treatment" schema="" catalog="dental_dev" columns="tooth_id"/>
       <index name="FK_rqk9cx1eesyomuqxqo05fyofa" unique="false" columns="mouth_id"/>
+    </table>
+    <table name="tooth_treatment" schema="" catalog="dental_dev" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="date" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="tooth_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="treatment" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_hecow5tjshgx1t852ijb98p45" columns="tooth_id" ref-table="tooth" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_hecow5tjshgx1t852ijb98p45" unique="false" columns="tooth_id"/>
     </table>
     <table name="user" schema="" catalog="dental_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>

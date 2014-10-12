@@ -7,6 +7,8 @@ class Tooth {
     String name
     int color
 
+    static hasMany = [teethTreatment : ToothTreatment]
+
     static belongsTo = [mouth: Mouth]
 
     static constraints = {

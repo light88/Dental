@@ -37,10 +37,8 @@
         <div class="tab-content">
 
             <div class="panel panel-default">
-                ${patients.size}
-                <div class="panel-heading">Patient List</div>
-
-                <table class="table" id="patientsTable">
+                <div class="panel-heading panel-title text-center">Patient List</div>
+                <table class="table table-striped" id="patientsTable">
                     <tr class="info">
                         <th>First Name</th>
                         <th>Last Name</th>
@@ -48,6 +46,7 @@
                         <th>DateOfBirth</th>
                         <th>Gender</th>
                         <th>Phone</th>
+                        <th>Link</th>
                     </tr>
                     <g:each in="${patients}" var="patient">
                         <tr>
@@ -57,24 +56,9 @@
                             <td>${patient.dateOfBirth}</td>
                             <td>${patient.gender}</td>
                             <td>${patient.phone}</td>
+                            <td><a href="${createLink(controller: 'patient', action: 'show', id: "${patient.id}")}">View</a>
+                            </td>
                         </tr>
-                    %{--<td>--}%
-                    %{--<!-- Split button -->--}%
-                    %{--<div class="btn-group">--}%
-                    %{--<a class="btn btn-success"--}%
-                    %{--href="${createLink(action: 'groups', params: [id: group.id])}">View</a>--}%
-                    %{--<button type="button" class="btn btn-default dropdown-toggle"--}%
-                    %{--data-toggle="dropdown">--}%
-                    %{--<span class="caret"></span>--}%
-                    %{--<span class="sr-only">Toggle Dropdown</span>--}%
-                    %{--</button>--}%
-                    %{--<ul class="dropdown-menu" role="menu">--}%
-                    %{--<li><g:link fragment="#" onclick="setGroupId(${group.id}); " data-toggle="modal"--}%
-                    %{--data-target="#m_delete_group">Delete</g:link></li>--}%
-                    %{--</ul>--}%
-                    %{--</div>--}%
-                    %{--</td>--}%
-                    %{--</tr>--}%
                     </g:each>
                 </table>
 
@@ -82,12 +66,13 @@
         </div>
     </div>
 
-</div>
-<g:paginate controller="patient" action="list" total="${size}" />
+    <div>
 
-%{--<g:paginate next="Forward" prev="Back"--}%
-            %{--maxsteps="0" controller="profile"--}%
-            %{--action="list" total="${size}" />--}%
+        <g:paginate controller="patient" action="list" total="${size}"/>
+
+        %{--<g:paginate next="Forward" prev="Back"--}%
+        %{--maxsteps="0" controller="profile"--}%
+        %{--action="list" total="${size}" />--}%
 
 </body>
 </html>

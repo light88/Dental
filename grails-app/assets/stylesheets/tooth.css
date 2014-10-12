@@ -1,0 +1,21 @@
+.tooth {
+    width: 35px;
+    height: 35px;
+    background-image: url("/assets/teeth13.png");
+}
+
+.red {
+    background-position: 0px;
+}
+
+.orange {
+    background-position: 35px;
+}
+
+.blue {
+    background-position: 70px;
+}
+
+.green {
+    background-position: 105px;
+}
