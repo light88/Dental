@@ -59,6 +59,16 @@ class PatientController {
             response.sendError(404)
             return
         }
-        [patient: patient]
+        def teethUL = patient.mouth.teeth.sort{it.name}.reverse().findAll {it.name.contains 'UL' }
+        def teethUR = patient.mouth.teeth.sort{it.name}.findAll {it.name.contains 'UR' }
+
+        def teethDL = patient.mouth.teeth.sort{it.name}.reverse().findAll {it.name.contains 'DL' }
+        def teethDR = patient.mouth.teeth.sort{it.name}.findAll {it.name.contains 'DR' }
+
+        println "----" + teethUL*.name
+        println "----" + teethUR*.name
+        println "----" + teethDL*.name
+        println "----" + teethDR*.name
+        [patient: patient, teethUL : teethUL, teethUR : teethUR, teethDL : teethDL, teethDR : teethDR]
     }
 }

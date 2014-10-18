@@ -15,6 +15,7 @@
     <schema name="" catalog="mysql"/>
     <schema name="" catalog="performance_schema"/>
     <schema name="" catalog="sakila"/>
+    <schema name="" catalog="teamcity"/>
     <schema name="" catalog="test"/>
     <schema name="" catalog="world"/>
     <table name="building" schema="" catalog="building" type="TABLE">
@@ -41,152 +42,6 @@
       <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
-    </table>
-    <table name="address" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="city_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="country_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_fglr19v76iy4kjip6nf33q99b" columns="city_id" ref-table="city" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_nyyg5dlcs74rm1girctd3mubi" columns="country_id" ref-table="country" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_j8b4al0gjt5lj9f979r2sf9kf" table="patient" schema="" catalog="dental_dev" columns="address_id"/>
-      <exported-key name="FK_h4lfia6yb55m850jjmcftwn2p" table="profile" schema="" catalog="dental_dev" columns="address_id"/>
-      <index name="FK_fglr19v76iy4kjip6nf33q99b" unique="false" columns="city_id"/>
-      <index name="FK_nyyg5dlcs74rm1girctd3mubi" unique="false" columns="country_id"/>
-    </table>
-    <table name="city" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="city" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="FK_fglr19v76iy4kjip6nf33q99b" table="address" schema="" catalog="dental_dev" columns="city_id"/>
-      <index name="UK_9s1n56j4o997fpcp1do8juel1" unique="true" columns="city"/>
-    </table>
-    <table name="country" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="country" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="FK_nyyg5dlcs74rm1girctd3mubi" table="address" schema="" catalog="dental_dev" columns="country_id"/>
-      <index name="UK_3s51q344kj9jse05r86moo9ka" unique="true" columns="country"/>
-    </table>
-    <table name="dentist" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="profile_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="rating_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_f0bevjjy8w0hgr43bihts57lq" columns="rating_id" ref-table="rating" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_gy8isr2retye7n1g9p44ta6sd" columns="profile_id" ref-table="profile" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_76ve2aa11e92716yw2l43vlax" table="patient" schema="" catalog="dental_dev" columns="dentist_id"/>
-      <index name="FK_f0bevjjy8w0hgr43bihts57lq" unique="false" columns="rating_id"/>
-      <index name="FK_gy8isr2retye7n1g9p44ta6sd" unique="false" columns="profile_id"/>
-    </table>
-    <table name="mouth" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="FK_r942ln0cs97gnetcmoied2mu3" table="patient" schema="" catalog="dental_dev" columns="mouth_id"/>
-      <exported-key name="FK_rqk9cx1eesyomuqxqo05fyofa" table="tooth" schema="" catalog="dental_dev" columns="mouth_id"/>
-    </table>
-    <table name="patient" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="address_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="date_of_birth" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
-      <column name="dentist_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="firstname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="gender" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
-      <column name="lastname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="mouth_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="patronimic" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="phone" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_76ve2aa11e92716yw2l43vlax" columns="dentist_id" ref-table="dentist" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_j8b4al0gjt5lj9f979r2sf9kf" columns="address_id" ref-table="address" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_r942ln0cs97gnetcmoied2mu3" columns="mouth_id" ref-table="mouth" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="FK_76ve2aa11e92716yw2l43vlax" unique="false" columns="dentist_id"/>
-      <index name="FK_j8b4al0gjt5lj9f979r2sf9kf" unique="false" columns="address_id"/>
-      <index name="FK_r942ln0cs97gnetcmoied2mu3" unique="false" columns="mouth_id"/>
-    </table>
-    <table name="profile" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="address_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="date_of_birth" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
-      <column name="firstname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="gender" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
-      <column name="lastname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="patronimic" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="phone" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_h4lfia6yb55m850jjmcftwn2p" columns="address_id" ref-table="address" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_gy8isr2retye7n1g9p44ta6sd" table="dentist" schema="" catalog="dental_dev" columns="profile_id"/>
-      <exported-key name="FK_1mcjtpxmwom9h9bf2q0k412e0" table="user" schema="" catalog="dental_dev" columns="profile_id"/>
-      <index name="FK_h4lfia6yb55m850jjmcftwn2p" unique="false" columns="address_id"/>
-    </table>
-    <table name="rating" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="points" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="FK_f0bevjjy8w0hgr43bihts57lq" table="dentist" schema="" catalog="dental_dev" columns="rating_id"/>
-    </table>
-    <table name="role" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="authority" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="FK_it77eq964jhfqtu54081ebtio" table="user_role" schema="" catalog="dental_dev" columns="role_id"/>
-      <index name="UK_irsamgnera6angm0prq1kemt2" unique="true" columns="authority"/>
-    </table>
-    <table name="tooth" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="color" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="exist" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
-      <column name="mouth_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_rqk9cx1eesyomuqxqo05fyofa" columns="mouth_id" ref-table="mouth" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_hecow5tjshgx1t852ijb98p45" table="tooth_treatment" schema="" catalog="dental_dev" columns="tooth_id"/>
-      <index name="FK_rqk9cx1eesyomuqxqo05fyofa" unique="false" columns="mouth_id"/>
-    </table>
-    <table name="tooth_treatment" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="date" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
-      <column name="tooth_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="treatment" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_hecow5tjshgx1t852ijb98p45" columns="tooth_id" ref-table="tooth" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="FK_hecow5tjshgx1t852ijb98p45" unique="false" columns="tooth_id"/>
-    </table>
-    <table name="user" schema="" catalog="dental_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
-      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="account_expired" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
-      <column name="account_locked" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
-      <column name="enabled" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
-      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="password_expired" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
-      <column name="profile_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_1mcjtpxmwom9h9bf2q0k412e0" columns="profile_id" ref-table="profile" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_apcc8lxk2xnug8377fatvbn04" table="user_role" schema="" catalog="dental_dev" columns="user_id"/>
-      <index name="UK_sb8bbouer5wak8vyiiy4pf2bx" unique="true" columns="username"/>
-      <index name="FK_1mcjtpxmwom9h9bf2q0k412e0" unique="false" columns="profile_id"/>
-    </table>
-    <table name="user_role" schema="" catalog="dental_dev" type="TABLE">
-      <column name="role_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <primary-key name="PRIMARY" columns="role_id,user_id"/>
-      <foreign-key name="FK_apcc8lxk2xnug8377fatvbn04" columns="user_id" ref-table="user" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_it77eq964jhfqtu54081ebtio" columns="role_id" ref-table="role" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="FK_apcc8lxk2xnug8377fatvbn04" unique="false" columns="user_id"/>
     </table>
     <table name="address" schema="" catalog="fitupness" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
@@ -2987,6 +2842,888 @@
       <exported-key name="fk_staff_store" table="staff" schema="" catalog="sakila" columns="store_id"/>
       <index name="idx_unique_manager" unique="true" columns="manager_staff_id"/>
       <index name="idx_fk_address_id" unique="false" columns="address_id"/>
+    </table>
+    <table name="action_history" schema="" catalog="teamcity" type="TABLE">
+      <column name="object_id" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="comment_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="action" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="additional_data" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <index name="action_history_action_object_i" unique="false" columns="action,object_id"/>
+      <index name="action_history_comment" unique="false" columns="comment_id"/>
+      <index name="action_history_object" unique="false" columns="object_id"/>
+    </table>
+    <table name="agent" schema="" catalog="teamcity" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="host_addr" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="port" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="agent_type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="authorized" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="registered" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="registration_timestamp" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="last_binding_timestamp" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="unregistered_reason" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <column name="authorization_token" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="status_to_restore" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="status_restoring_timestamp" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="agent_name_ui" unique="true" columns="name"/>
+      <index name="agent_agent_type_id" unique="false" columns="agent_type_id"/>
+      <index name="agent_authorization_token" unique="false" columns="authorization_token"/>
+      <index name="agent_host_address" unique="false" columns="host_addr"/>
+    </table>
+    <table name="agent_pool" schema="" catalog="teamcity" type="TABLE">
+      <column name="agent_pool_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="agent_pool_name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="agent_pool_id"/>
+      <index name="agent_pool_ak" unique="true" columns="agent_pool_name"/>
+    </table>
+    <table name="agent_pool_project" schema="" catalog="teamcity" type="TABLE">
+      <column name="agent_pool_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="project_int_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="agent_pool_id,project_int_id"/>
+    </table>
+    <table name="agent_sources_version" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="vcs_root_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="agent_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="vcs_settings_hash" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="checkout_dir" sqlType="VARCHAR" precision="2048" scale="0" nullable="true" jdbcType="12"/>
+      <column name="current_version" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="build_type_id,vcs_settings_hash,vcs_root_id,agent_id"/>
+      <index name="agent_sources_version_hidx" unique="false" columns="vcs_settings_hash"/>
+    </table>
+    <table name="agent_type" schema="" catalog="teamcity" type="TABLE">
+      <column name="agent_type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="agent_pool_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cloud_code" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="profile_id" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="image_id" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="policy" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="agent_type_id"/>
+      <index name="agent_type_ak" unique="true" columns="cloud_code,profile_id,image_id"/>
+      <index name="agent_type_pool_i" unique="false" columns="agent_pool_id"/>
+    </table>
+    <table name="agent_type_bt_access" schema="" catalog="teamcity" type="TABLE">
+      <column name="agent_type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="agent_type_id,build_type_id"/>
+      <index name="agent_type_bt_access_bt_i" unique="false" columns="build_type_id"/>
+    </table>
+    <table name="agent_type_info" schema="" catalog="teamcity" type="TABLE">
+      <column name="agent_type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="os_name" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cpu_rank" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="created_timestamp" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="modified_timestamp" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="agent_type_id"/>
+    </table>
+    <table name="agent_type_param" schema="" catalog="teamcity" type="TABLE">
+      <column name="agent_type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="param_kind" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="param_name" sqlType="VARCHAR" precision="160" scale="0" nullable="false" jdbcType="12"/>
+      <column name="param_value" sqlType="VARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="agent_type_id,param_kind,param_name"/>
+    </table>
+    <table name="agent_type_runner" schema="" catalog="teamcity" type="TABLE">
+      <column name="agent_type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="runner" sqlType="VARCHAR" precision="250" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="agent_type_id,runner"/>
+    </table>
+    <table name="agent_type_vcs" schema="" catalog="teamcity" type="TABLE">
+      <column name="agent_type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="vcs" sqlType="VARCHAR" precision="250" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="agent_type_id,vcs"/>
+    </table>
+    <table name="audit_additional_object" schema="" catalog="teamcity" type="TABLE">
+      <column name="comment_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="object_index" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="object_id" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="object_name" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <index name="audit_a_o_comment" unique="false" columns="comment_id"/>
+      <index name="audit_a_o_object_index" unique="false" columns="object_index"/>
+    </table>
+    <table name="backup_builds" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <index name="backup_builds_ak" unique="true" columns="build_id"/>
+    </table>
+    <table name="backup_info" schema="" catalog="teamcity" type="TABLE">
+      <column name="mproc_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="file_name" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="file_size" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="started" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="finished" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="status" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="mproc_id"/>
+      <index name="backup_info_file_i" unique="false" columns="file_name"/>
+    </table>
+    <table name="build_artifact_dependency" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="source_build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="src_paths" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="revision_rule" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="branch" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <index name="build_artif_dep_state_id" unique="false" columns="build_state_id"/>
+    </table>
+    <table name="build_attrs" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="attr_name" sqlType="VARCHAR" precision="70" scale="0" nullable="false" jdbcType="12"/>
+      <column name="attr_value" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="attr_num_value" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="build_state_id,attr_name"/>
+      <index name="build_attrs_num_i" unique="false" columns="attr_num_value,attr_name,build_state_id"/>
+    </table>
+    <table name="build_checkout_rules" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="vcs_root_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="checkout_rules" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="build_state_id,build_type_id,vcs_root_id"/>
+    </table>
+    <table name="build_data_storage" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="metric_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="metric_value" sqlType="DECIMAL" precision="19" scale="0" nullable="false" jdbcType="3"/>
+      <primary-key name="PRIMARY" columns="build_id,metric_id"/>
+    </table>
+    <table name="build_dependency" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="depends_on" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="dependency_options" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="build_state_id,depends_on"/>
+    </table>
+    <table name="build_labels" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="vcs_root_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="label" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="error_message" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <index name="build_labels_build" unique="false" columns="build_id"/>
+      <index name="build_labels_vcs_root" unique="false" columns="vcs_root_id"/>
+    </table>
+    <table name="build_overriden_roots" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="original_vcs_root_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="substitution_vcs_root_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="build_state_id,original_vcs_root_id"/>
+      <index name="build_subst_root_index" unique="false" columns="substitution_vcs_root_id"/>
+    </table>
+    <table name="build_problem" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="problem_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="problem_description" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="build_state_id,problem_id"/>
+    </table>
+    <table name="build_problem_attribute" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="problem_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="attr_name" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="attr_value" sqlType="VARCHAR" precision="2000" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="build_state_id,problem_id,attr_name"/>
+    </table>
+    <table name="build_problem_muted" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="problem_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="mute_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="build_state_id,problem_id"/>
+    </table>
+    <table name="build_queue" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="agent_restrictor_type_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="agent_restrictor_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="requestor" sqlType="VARCHAR" precision="1024" scale="0" nullable="true" jdbcType="12"/>
+      <column name="when_queued" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="pos" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <index name="build_queue_build_state_id" unique="false" columns="build_state_id"/>
+    </table>
+    <table name="build_revisions" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="vcs_root_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="vcs_revision" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="vcs_revision_display_name" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="modification_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="vcs_root_type" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="build_state_id,vcs_root_id"/>
+      <index name="build_revisions_vcs_root_i" unique="false" columns="vcs_root_id"/>
+    </table>
+    <table name="build_set_tmp" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="build_id"/>
+    </table>
+    <table name="build_state" schema="" catalog="teamcity" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="modification_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="is_personal" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="is_canceled" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="is_changes_detached" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="is_deleted" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="branch_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="build_state_build_id" unique="false" columns="build_id"/>
+      <index name="build_state_build_type_id" unique="false" columns="build_type_id"/>
+      <index name="build_state_mod_id" unique="false" columns="modification_id"/>
+    </table>
+    <table name="build_type_mapping" schema="" catalog="teamcity" type="TABLE">
+      <column name="int_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ext_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="main" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <index name="build_type_mapping_ak" unique="true" columns="ext_id"/>
+      <index name="build_type_mapping_ie" unique="false" columns="int_id"/>
+    </table>
+    <table name="build_type_vcs_change" schema="" catalog="teamcity" type="TABLE">
+      <column name="modification_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="change_type" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <index name="build_type_vcs_change_ui" unique="true" columns="modification_id,build_type_id"/>
+      <index name="build_type_vcs_change_btid" unique="false" columns="build_type_id"/>
+    </table>
+    <table name="canceled_info" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="description" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="build_id"/>
+    </table>
+    <table name="clean_checkout_enforcement" schema="" catalog="teamcity" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="agent_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="current_build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="request_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="cleanup_history" schema="" catalog="teamcity" type="TABLE">
+      <column name="proc_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_time" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="finish_time" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="interrupt_reason" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="proc_id"/>
+    </table>
+    <table name="cloud_image_without_agent" schema="" catalog="teamcity" type="TABLE">
+      <column name="profile_id" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cloud_code" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="image_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_update" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="profile_id,cloud_code,image_id"/>
+    </table>
+    <table name="cloud_started_instance" schema="" catalog="teamcity" type="TABLE">
+      <column name="profile_id" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cloud_code" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="image_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="instance_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_update" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="profile_id,cloud_code,image_id,instance_id"/>
+    </table>
+    <table name="comments" schema="" catalog="teamcity" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="author_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="when_changed" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="commentary" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="compiler_output" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="message_order" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="message" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <index name="co_build_id_index" unique="false" columns="build_id"/>
+    </table>
+    <table name="data_storage_dict" schema="" catalog="teamcity" type="TABLE">
+      <column name="metric_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="value_type_key" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="metric_id"/>
+      <index name="value_type_key_index" unique="true" columns="value_type_key"/>
+    </table>
+    <table name="db_heartbeat" schema="" catalog="teamcity" type="TABLE">
+      <column name="starting_code" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="starting_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="lock_mode" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="ip_address" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="additional_info" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="last_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="starting_code"/>
+    </table>
+    <table name="db_version" schema="" catalog="teamcity" type="TABLE">
+      <column name="version_number" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="version_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="version_number"/>
+    </table>
+    <table name="default_build_parameters" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="param_name" sqlType="VARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="param_value" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <index name="def_build_params_state_id" unique="false" columns="build_state_id"/>
+    </table>
+    <table name="deleted_build_types" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="delete_time" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="build_type_id"/>
+    </table>
+    <table name="downloaded_artifacts" schema="" catalog="teamcity" type="TABLE">
+      <column name="target_build_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="source_build_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="artifact_path" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="download_timestamp" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <index name="downloaded_artifacts_source_id" unique="false" columns="source_build_id"/>
+      <index name="downloaded_artifacts_ts_id" unique="false" columns="target_build_id,source_build_id"/>
+    </table>
+    <table name="duplicate_diff" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="hash" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="build_id,hash"/>
+    </table>
+    <table name="duplicate_fragments" schema="" catalog="teamcity" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="file_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="offset_info" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="line" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <index name="duplicate_fragments_file_index" unique="false" columns="file_id"/>
+      <index name="duplicate_fragments_index" unique="false" columns="id"/>
+    </table>
+    <table name="duplicate_results" schema="" catalog="teamcity" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="hash" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="cost" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="duplicate_results_build_id" unique="false" columns="build_id"/>
+    </table>
+    <table name="duplicate_stats" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="total" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="new_total" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="old_total" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="build_id"/>
+    </table>
+    <table name="failed_tests_output" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="test_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="problem_description" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="std_output" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="error_output" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="stacktrace" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="expected" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="actual" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="build_id,test_id"/>
+    </table>
+    <table name="final_artifact_dependency" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="source_build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="src_paths" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="revision_rule" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="branch" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <index name="final_artif_dep_state_id" unique="false" columns="build_state_id"/>
+    </table>
+    <table name="fragments" schema="" catalog="teamcity" type="TABLE">
+      <column name="hash" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="file_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <index name="duplicate_results_file_index" unique="false" columns="file_id"/>
+      <index name="fragments_hash_index" unique="false" columns="hash"/>
+    </table>
+    <table name="history" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="agent_name" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="build_start_time_server" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="build_start_time_agent" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="build_finish_time_server" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="status_text" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <column name="user_status_text" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <column name="pin" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="is_personal" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="is_canceled" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="build_number" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <column name="requestor" sqlType="VARCHAR" precision="1024" scale="0" nullable="true" jdbcType="12"/>
+      <column name="queued_time" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="remove_from_queue_time" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="agent_type_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="build_id"/>
+      <index name="build_type_id_index" unique="false" columns="build_type_id"/>
+      <index name="history_agname_bfintimesrv_i" unique="false" columns="agent_name,build_finish_time_server"/>
+      <index name="history_agt_b_i" unique="false" columns="agent_type_id,build_id"/>
+      <index name="history_build_number" unique="false" columns="build_number"/>
+      <index name="history_finish_time_i" unique="false" columns="build_finish_time_server"/>
+      <index name="history_state_id" unique="false" columns="build_state_id"/>
+      <index name="pinned_index" unique="false" columns="pin"/>
+      <index name="start_time_index" unique="false" columns="build_start_time_server"/>
+      <index name="status_index" unique="false" columns="status"/>
+    </table>
+    <table name="ignored_tests" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="test_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="test_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="reason" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <index name="ignored_tests_build_id" unique="false" columns="build_id"/>
+    </table>
+    <table name="inspection_data" schema="" catalog="teamcity" type="TABLE">
+      <column name="hash" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="result" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="severity" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="type_pattern" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="fqname" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="file_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="parent_fqnames" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="parent_type_patterns" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="module_name" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="inspection_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="is_local" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="used" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="hash"/>
+      <index name="inspection_data_file_index" unique="false" columns="file_name"/>
+      <index name="inspection_data_insp_index" unique="false" columns="inspection_id"/>
+    </table>
+    <table name="inspection_diff" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="hash" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <index name="inspection_diff_ak" unique="true" columns="build_id,hash"/>
+      <index name="inspection_diff_hash_index" unique="false" columns="hash"/>
+    </table>
+    <table name="inspection_fixes" schema="" catalog="teamcity" type="TABLE">
+      <column name="hash" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="hint" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <index name="inspection_fixes_hash_index" unique="false" columns="hash"/>
+    </table>
+    <table name="inspection_info" schema="" catalog="teamcity" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="inspection_id" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="inspection_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="inspection_desc" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="group_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="inspection_info_ak" unique="true" columns="inspection_id"/>
+    </table>
+    <table name="inspection_results" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="hash" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="line" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <index name="inspection_results_buildhash_i" unique="false" columns="build_id,hash"/>
+      <index name="inspection_results_hash_index" unique="false" columns="hash"/>
+    </table>
+    <table name="inspection_stats" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="total" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="new_total" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="old_total" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="errors" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="new_errors" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="old_errors" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="build_id"/>
+    </table>
+    <table name="light_history" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="agent_name" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="build_start_time_server" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="build_start_time_agent" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="build_finish_time_server" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="status_text" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <column name="user_status_text" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <column name="pin" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="is_personal" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="is_canceled" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="build_number" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <column name="requestor" sqlType="VARCHAR" precision="1024" scale="0" nullable="true" jdbcType="12"/>
+      <column name="queued_time" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="remove_from_queue_time" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="agent_type_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="build_id"/>
+      <index name="build_type_id_index_light" unique="false" columns="build_type_id"/>
+      <index name="light_history_agname_bftime_i" unique="false" columns="agent_name,build_finish_time_server"/>
+      <index name="light_history_agt_b_i" unique="false" columns="agent_type_id,build_id"/>
+      <index name="light_history_finish_time_i" unique="false" columns="build_finish_time_server"/>
+      <index name="pinned_index_light" unique="false" columns="pin"/>
+      <index name="start_time_index_light" unique="false" columns="build_start_time_server"/>
+      <index name="status_index_light" unique="false" columns="status"/>
+    </table>
+    <table name="meta_file_line" schema="" catalog="teamcity" type="TABLE">
+      <column name="file_name" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <column name="line_nr" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="line_text" sqlType="VARCHAR" precision="160" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="file_name,line_nr"/>
+    </table>
+    <table name="mute_info" schema="" catalog="teamcity" type="TABLE">
+      <column name="mute_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="muting_user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="muting_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="muting_comment" sqlType="VARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="scope" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="project_int_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="unmute_when_fixed" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <column name="unmute_by_time" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="mute_id"/>
+      <index name="mute_info_ak" unique="true" columns="project_int_id,mute_id"/>
+    </table>
+    <table name="mute_info_bt" schema="" catalog="teamcity" type="TABLE">
+      <column name="mute_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="mute_id,build_type_id"/>
+    </table>
+    <table name="mute_info_problem" schema="" catalog="teamcity" type="TABLE">
+      <column name="mute_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="problem_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="mute_id,problem_id"/>
+    </table>
+    <table name="mute_info_test" schema="" catalog="teamcity" type="TABLE">
+      <column name="mute_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="test_name_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="mute_id,test_name_id"/>
+    </table>
+    <table name="mute_problem_in_bt" schema="" catalog="teamcity" type="TABLE">
+      <column name="mute_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="problem_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="mute_id,build_type_id,problem_id"/>
+      <index name="mute_problem_in_bt_ie" unique="false" columns="build_type_id,problem_id,mute_id"/>
+    </table>
+    <table name="mute_problem_in_proj" schema="" catalog="teamcity" type="TABLE">
+      <column name="mute_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="project_int_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="problem_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="mute_id,project_int_id,problem_id"/>
+      <index name="mute_problem_in_proj_ie" unique="false" columns="project_int_id,problem_id,mute_id"/>
+    </table>
+    <table name="mute_test_in_bt" schema="" catalog="teamcity" type="TABLE">
+      <column name="mute_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="test_name_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="mute_id,build_type_id,test_name_id"/>
+      <index name="mute_test_in_bt_ie" unique="false" columns="build_type_id,test_name_id,mute_id"/>
+    </table>
+    <table name="mute_test_in_proj" schema="" catalog="teamcity" type="TABLE">
+      <column name="mute_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="project_int_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="test_name_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="mute_id,project_int_id,test_name_id"/>
+      <index name="mute_test_in_proj_ie" unique="false" columns="project_int_id,test_name_id,mute_id"/>
+    </table>
+    <table name="personal_build_relative_path" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="original_path_hash" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="relative_path" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <index name="personal_build_relative_p_ak" unique="true" columns="build_id,original_path_hash"/>
+    </table>
+    <table name="personal_vcs_changes" schema="" catalog="teamcity" type="TABLE">
+      <column name="modification_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="change_name" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="vcs_file_name" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="relative_file_name" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="change_type" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="before_revision" sqlType="VARCHAR" precision="2048" scale="0" nullable="true" jdbcType="12"/>
+      <column name="after_revision" sqlType="VARCHAR" precision="2048" scale="0" nullable="true" jdbcType="12"/>
+      <index name="vcs_personal_changes_index" unique="false" columns="modification_id"/>
+    </table>
+    <table name="personal_vcs_history" schema="" catalog="teamcity" type="TABLE">
+      <column name="modification_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="description" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="change_date" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="changes_count" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="commit_changes" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="scheduled_for_deletion" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="modification_id"/>
+      <index name="personal_vcs_history_user_id" unique="false" columns="user_id"/>
+    </table>
+    <table name="problem" schema="" catalog="teamcity" type="TABLE">
+      <column name="problem_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="problem_type" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="problem_identity" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="problem_id"/>
+      <index name="problem_ak" unique="true" columns="problem_type,problem_identity"/>
+    </table>
+    <table name="project_files" schema="" catalog="teamcity" type="TABLE">
+      <column name="file_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="file_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="file_id"/>
+      <index name="project_files_file_name_index" unique="false" columns="file_name"/>
+    </table>
+    <table name="project_mapping" schema="" catalog="teamcity" type="TABLE">
+      <column name="int_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ext_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="main" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <index name="project_mapping_ak" unique="true" columns="ext_id"/>
+      <index name="project_mapping_ie" unique="false" columns="int_id"/>
+    </table>
+    <table name="remember_me" schema="" catalog="teamcity" type="TABLE">
+      <column name="user_key" sqlType="VARCHAR" precision="65" scale="0" nullable="false" jdbcType="12"/>
+      <column name="secure" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+    </table>
+    <table name="responsibilities" schema="" catalog="teamcity" type="TABLE">
+      <column name="problem_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="state" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="responsible_user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="reporter_user_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="timestmp" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="comments" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="remove_method" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="problem_id"/>
+      <index name="responsibilities_assignee" unique="false" columns="responsible_user_id"/>
+      <index name="responsibilities_reporter" unique="false" columns="reporter_user_id"/>
+    </table>
+    <table name="running" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="agent_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="build_start_time_agent" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="build_start_time_server" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="is_personal" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="build_number" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <column name="requestor" sqlType="VARCHAR" precision="1024" scale="0" nullable="true" jdbcType="12"/>
+      <column name="access_code" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="queued_ag_restr_type_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="queued_ag_restr_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="queued_time" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="remove_from_queue_time" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="agent_type_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="build_id"/>
+      <index name="running_state_id" unique="false" columns="build_state_id"/>
+    </table>
+    <table name="server" schema="" catalog="teamcity" type="TABLE">
+      <column name="server_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+    </table>
+    <table name="server_health_items" schema="" catalog="teamcity" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="report_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="category_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="item_id" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="visible" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="server_health_items_ie" unique="false" columns="report_id,category_id"/>
+    </table>
+    <table name="server_property" schema="" catalog="teamcity" type="TABLE">
+      <column name="prop_name" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="prop_value" sqlType="VARCHAR" precision="256" scale="0" nullable="false" jdbcType="12"/>
+      <index name="server_property_ak" unique="true" columns="prop_name"/>
+    </table>
+    <table name="single_row" schema="" catalog="teamcity" type="TABLE">
+      <column name="dummy_field" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+    </table>
+    <table name="stats" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="test_count" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="status_text" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="build_id"/>
+    </table>
+    <table name="stats_publisher_state" schema="" catalog="teamcity" type="TABLE">
+      <column name="metric_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="value" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="metric_id"/>
+    </table>
+    <table name="tc_build_tags" schema="" catalog="teamcity" type="TABLE">
+      <column name="tag" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <index name="tc_tags_id_index" unique="false" columns="build_id"/>
+      <index name="tc_tags_id_tag" unique="false" columns="tag"/>
+    </table>
+    <table name="test_failure_rate" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="agent_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="test_name_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="success_count" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="failure_count" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="last_failure_time" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="build_type_id,agent_id,test_name_id"/>
+    </table>
+    <table name="test_info" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="test_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="test_name_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="duration" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="build_id,test_id"/>
+      <index name="test_name_id_idx" unique="false" columns="test_name_id"/>
+    </table>
+    <table name="test_muted" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="test_name_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="mute_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="build_id,test_name_id,mute_id"/>
+      <index name="test_muted_mute_id" unique="false" columns="mute_id"/>
+    </table>
+    <table name="test_names" schema="" catalog="teamcity" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="test_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="user_blocks" schema="" catalog="teamcity" type="TABLE">
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="block_type" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="state" sqlType="VARCHAR" precision="2048" scale="0" nullable="true" jdbcType="12"/>
+      <index name="user_blocks_ui" unique="true" columns="user_id,block_type"/>
+    </table>
+    <table name="user_build_parameters" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_state_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="param_name" sqlType="VARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="param_value" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <index name="user_build_params_state_id" unique="false" columns="build_state_id"/>
+    </table>
+    <table name="user_notification_events" schema="" catalog="teamcity" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="notificator_type" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="events_mask" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="notification_events_notifier" unique="false" columns="notificator_type"/>
+      <index name="notification_events_user_id" unique="false" columns="user_id"/>
+    </table>
+    <table name="user_projects_order" schema="" catalog="teamcity" type="TABLE">
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="project_int_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ordernum" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <index name="user_projects_order_ui" unique="true" columns="user_id,project_int_id"/>
+    </table>
+    <table name="user_projects_visibility" schema="" catalog="teamcity" type="TABLE">
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="project_int_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="visible" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <index name="user_projects_visibility_ui" unique="true" columns="user_id,project_int_id"/>
+    </table>
+    <table name="user_property" schema="" catalog="teamcity" type="TABLE">
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="key1" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value" sqlType="VARCHAR" precision="2048" scale="0" nullable="true" jdbcType="12"/>
+      <index name="user_property_ui" unique="true" columns="user_id,key1"/>
+    </table>
+    <table name="user_roles" schema="" catalog="teamcity" type="TABLE">
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="role_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="project_int_id" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <index name="user_roles_ui" unique="true" columns="user_id,role_id,project_int_id"/>
+    </table>
+    <table name="user_watch_type" schema="" catalog="teamcity" type="TABLE">
+      <column name="rule_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="notificator_type" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="watch_type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="watch_value" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="order_num" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <index name="user_watch_type_ui" unique="true" columns="user_id,notificator_type,watch_type,watch_value"/>
+      <index name="watch_type_rule_id" unique="false" columns="rule_id"/>
+    </table>
+    <table name="usergroup_notification_events" schema="" catalog="teamcity" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="group_id" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="notificator_type" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="events_mask" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="usergroup_events_group_id" unique="false" columns="group_id"/>
+      <index name="usergroup_events_notifier" unique="false" columns="notificator_type"/>
+    </table>
+    <table name="usergroup_roles" schema="" catalog="teamcity" type="TABLE">
+      <column name="group_id" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="role_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="project_int_id" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <index name="usergroup_roles_ui" unique="true" columns="group_id,role_id,project_int_id"/>
+    </table>
+    <table name="usergroup_subgroups" schema="" catalog="teamcity" type="TABLE">
+      <column name="hostgroup_id" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="subgroup_id" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <index name="usergroup_subgroups_ui" unique="true" columns="hostgroup_id,subgroup_id"/>
+    </table>
+    <table name="usergroup_users" schema="" catalog="teamcity" type="TABLE">
+      <column name="group_id" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <index name="usergroup_users_ui" unique="true" columns="group_id,user_id"/>
+    </table>
+    <table name="usergroup_watch_type" schema="" catalog="teamcity" type="TABLE">
+      <column name="rule_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="group_id" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="notificator_type" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="watch_type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="watch_value" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="order_num" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <index name="usergroup_watch_type_ui" unique="true" columns="group_id,notificator_type,watch_type,watch_value"/>
+      <index name="group_watch_type_rule_id" unique="false" columns="rule_id"/>
+    </table>
+    <table name="usergroups" schema="" catalog="teamcity" type="TABLE">
+      <column name="group_id" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="group_id"/>
+      <index name="usergroups_name" unique="true" columns="name"/>
+    </table>
+    <table name="users" schema="" catalog="teamcity" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="auth_type" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="realm" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <column name="last_login_timestamp" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="password" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="users_ak" unique="true" columns="auth_type,realm,username"/>
+    </table>
+    <table name="vcs_change_attrs" schema="" catalog="teamcity" type="TABLE">
+      <column name="modification_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="attr_name" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="attr_value" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="modification_id,attr_name"/>
+    </table>
+    <table name="vcs_changes" schema="" catalog="teamcity" type="TABLE">
+      <column name="modification_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="change_name" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="vcs_file_name" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="relative_file_name" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="change_type" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="before_revision" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="after_revision" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <index name="vcs_changes_index" unique="false" columns="modification_id"/>
+    </table>
+    <table name="vcs_changes_graph" schema="" catalog="teamcity" type="TABLE">
+      <column name="child_modification_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="child_revision" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="parent_num" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="parent_modification_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="parent_revision" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="child_modification_id,parent_num"/>
+    </table>
+    <table name="vcs_history" schema="" catalog="teamcity" type="TABLE">
+      <column name="modification_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="change_date" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="register_date" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="vcs_root_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="changes_count" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="version" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="display_version" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="modification_id"/>
+      <index name="vcs_history_root" unique="false" columns="vcs_root_id"/>
+      <index name="vcs_history_user" unique="false" columns="user_name"/>
+      <index name="vcs_version_in_root_i" unique="false" columns="vcs_root_id,version"/>
+    </table>
+    <table name="vcs_root_first_revision" schema="" catalog="teamcity" type="TABLE">
+      <column name="build_type_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="parent_root_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="settings_hash" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="vcs_revision" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="build_type_id,parent_root_id,settings_hash"/>
+    </table>
+    <table name="vcs_root_instance" schema="" catalog="teamcity" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="parent_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="settings_hash" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="body" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="vcs_root_instance_hash_idx" unique="false" columns="settings_hash"/>
+      <index name="vcs_root_instance_parent_idx" unique="false" columns="parent_id"/>
+    </table>
+    <table name="vcs_root_mapping" schema="" catalog="teamcity" type="TABLE">
+      <column name="int_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="ext_id" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="main" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <index name="vcs_root_mapping_ak" unique="true" columns="ext_id"/>
+      <index name="vcs_root_mapping_ie" unique="false" columns="int_id"/>
     </table>
     <table name="customers" schema="" catalog="test" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>

@@ -2,7 +2,8 @@
 <html style="height: 100%">
 	<head>
 		<title>Page not found</title>
-		%{--<meta name="layout" content="main">--}%
+        <meta http-equiv="refresh" content="1; url=http://localhost:8080" />
+		<meta name="layout" content="main">
         <style>
             .b {
                 /* fallback */

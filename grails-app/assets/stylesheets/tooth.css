@@ -19,3 +19,7 @@
 .green {
     background-position: 105px;
 }
+
+.selected {
+    border: 3px solid #00b3ee ;
+}

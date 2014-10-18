@@ -4,7 +4,7 @@ class ToothTreatment {
 
     String treatment
     Date date
-//    Tooth tooth
+    Dentist dentist
 
     static belongsTo = [tooth : Tooth]
 

@@ -13,18 +13,20 @@ class TreatmentController {
         def dentist = dentalService.dentist()
         def p = dentist.patients.find { it.id == params.long("id", 0L) }
         println p
-        def t = Tooth.get(params.id)
+        def tooth = Tooth.get(params.id)
 
-        t.addToTeethTreatment(new ToothTreatment(treatment: params.treatment, date: new Date()))
-        t.save(flush: true)
-        render "OK"
+        println '+++'+params
+        tooth.addToTeethTreatment(new ToothTreatment(treatment: params.treatment,
+                date: new Date(), dentist: dentist))
+        tooth.save(flush: true)
+        def list = ToothTreatment.findAllByTooth(tooth).sort {t->t.date}.reverse()
+        render template: 'template_treatment_list', model: [treatments : list]
     }
 
     def treatInfo(){
         println params.id
         def tooth = Tooth.get(params.id)
-        def list = ToothTreatment.findAllByTooth(tooth)
-        println list
-        render template: 'tooth_table', model: [treatments : list]
+        def list = ToothTreatment.findAllByTooth(tooth).sort {t->t.date}.reverse()
+        render template: 'template_treatment_list', model: [treatments : list]
     }
 }

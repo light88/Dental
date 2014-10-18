@@ -18,7 +18,7 @@
 <body>
 <div class="row">
 
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-8">
         <p class="lead text-center">${patient.firstname} ${patient.lastname} ${patient.patronimic}</p>
 
         <p class="small text-center"><g:message code="page.dob"/> ${patient.dateOfBirth}</p>
@@ -27,19 +27,20 @@
         %{--${patient.gender}--}%
 
         <div>
-            <g:each in="${patient.mouth.teeth}" var="tooth">
-                <img onclick="loadData(this);" class="tooth ${tooth.color}" id="${tooth.id}" data-name="${tooth.name}"/>
-            </g:each>
+            <g:render template="template_teeth" model="[patient: patient, teethUL: teethUL,
+                                                        teethUR: teethUR, teethDL: teethDL, teethDR: teethDR]"/>
         </div>
-        <br/>
 
-        <g:form id="treat" role="form" action="treat">
+
+        <div>
             <textarea class="form-control col-md-12" rows="7"></textarea>
-            <input class="btn btn-success" onclick="s();" type="button" value="Submit"/>
-        </g:form>
-        <br/>
+            <input class="btn btn-success" onclick="submit();" type="button" value="Submit"/>
+        </div>
+    </div>
 
-        <div id="listTreatment" class="bg-info">
+    <div class="col-md-4">
+
+        <div id="listTreatment" class="btn-group-lg" style="margin-top: 20px;">
             list treatment
         </div>
     </div>
@@ -48,30 +49,66 @@
 
 <script>
 
-    var tooth = {}
+    var b = function ($) {
+        this.listTreatment = $("#listTreatment")
+        return {
+            updateListTreatment: function (value) {
+                listTreatment.html(value)
+            }
+        }
+    }($);
+
+    function ToothConfig($) {
+
+        this.selectedTooth;
+        this.htmlTooth;
+
+        this.gettoothdata = function () {
+            var o = {}
+            o.id = this.htmlTooth.id
+            o.name =  this.selectedTooth.data('name')
+            return o
+        }
+
+        this.selectTooth = function (obj) {
+            this.htmlTooth = obj;
+            if(this.selectedTooth)
+                this.selectedTooth.removeClass("selected")
+            this.selectedTooth = $('#' + obj.id)
+            this.selectedTooth.addClass("selected")
+        }
+    }
+
+    var toothConfig = new ToothConfig($)
+
     function loadData(that) {
-        var x = $('#' + that.id).data('name')
-        tooth.id = that.id
-        tooth.name = x
+        toothConfig.selectTooth(that)
+        b.updateListTreatment('loading...')
 
         $.ajax({
             url: "${createLink(controller: 'treatment', action: 'treatInfo')}",
-            data: tooth,
+            data: toothConfig.gettoothdata(),
             type: 'POST'
         }).done(function (data, textStatus, jqXHR) {
-//            alert(data)
-            $("#listTreatment").html(data)
+            b.updateListTreatment(data)
         });
     }
 
-    function s() {
+    function submit() {
+        if (!toothConfig.selectedTooth) {
+            alert('Select tooth');
+            return
+        }
+
+        var tooth = toothConfig.gettoothdata()
         tooth.treatment = $('textarea').val()
         $.ajax({
             url: "${createLink(controller: 'treatment', action: 'treat')}",
             data: tooth,
             type: 'POST'
         }).done(function (data, textStatus, jqXHR) {
-            alert(data);
+            b.updateListTreatment(data)
+            $('textarea').val('');
         });
     }
 </script>
