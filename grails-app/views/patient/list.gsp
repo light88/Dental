@@ -19,16 +19,17 @@
     %{--left column--}%
     <div class="col-md-3">
         <ul class="list-group">
+            <a href="${createLink(controller: 'patient', action: 'newPatient')}" class="list-group-item
+            <g:if test="${controllerName == 'patient' && actionName == 'new'}">active</g:if>">New Patient</a>
             <a href="${createLink(controller: 'patient', action: 'list')}" class="list-group-item
             <g:if test="${controllerName == 'patient' && actionName == 'list'}">active</g:if>">List Patients</a>
 
-            <a href="${createLink(controller: 'patient', action: 'newPatient')}" class="list-group-item
-            <g:if test="${controllerName == 'patient' && actionName == 'new'}">active</g:if>">New Patient</a>
         </ul>
 
-        <g:formRemote name="search" url="[controller: 'patient', action: 'search']" update="patientsTable">
+        <g:formRemote name="search" url="[controller: 'patient', action: 'search']"
+                      update="patientsTable">
             <g:textField class="form-control" type="text" name="name" placeholder="Name"/>
-            <g:submitButton class="btn btn-danger form-control" name="Search"/>
+            <g:submitButton class="btn btn-success form-control" name="Search"/>
         </g:formRemote>
 
     </div>
@@ -39,7 +40,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading panel-title text-center">Patient List</div>
                 <table class="table table-striped" id="patientsTable">
-                    <tr class="info">
+                    <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Patronimic</th>
@@ -53,7 +54,7 @@
                             <td>${patient.firstname}</td>
                             <td>${patient.lastname}</td>
                             <td>${patient.patronimic}</td>
-                            <td>${patient.dateOfBirth}</td>
+                            <td>${patient.dateOfBirth.dateString}</td>
                             <td>${patient.gender}</td>
                             <td>${patient.phone}</td>
                             <td><a href="${createLink(controller: 'patient', action: 'show', id: "${patient.id}")}">View</a>

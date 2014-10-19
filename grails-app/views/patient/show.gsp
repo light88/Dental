@@ -19,18 +19,19 @@
 <div class="row">
 
     <div class="col-md-8">
-        <p class="lead text-center">${patient.firstname} ${patient.lastname} ${patient.patronimic}</p>
+        <div class="well well-sm">
+            <h3 class="text-center">${patient.firstname} ${patient.lastname} ${patient.patronimic}</h3>
 
-        <p class="small text-center"><g:message code="page.dob"/> ${patient.dateOfBirth}</p>
+            <p class="small text-center"><g:message code="page.dob"/> ${patient.dateOfBirth}</p>
 
-        <p class="small text-center">${patient.phone}</p>
-        %{--${patient.gender}--}%
+            <p class="small text-center">Phone : ${patient.phone}</p>
+            %{--${patient.gender}--}%
 
-        <div>
-            <g:render template="template_teeth" model="[patient: patient, teethUL: teethUL,
-                                                        teethUR: teethUR, teethDL: teethDL, teethDR: teethDR]"/>
         </div>
 
+        <div class="well" style="background: #ffffff">
+            <g:render template="template_teeth" model="[teethUP: teethUP, teethDOWN: teethDOWN]"/>
+        </div>
 
         <div>
             <textarea class="form-control col-md-12" rows="7"></textarea>
@@ -40,9 +41,20 @@
 
     <div class="col-md-4">
 
-        <div id="listTreatment" class="btn-group-lg" style="margin-top: 20px;">
-            list treatment
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Treatment</h3>
+                </div>
+
+            <div class="list-group" id="listTreatment">
+
+            </div>
+
+            <div class="panel-footer">
+                Footer
+            </div>
         </div>
+
     </div>
 
 </div>
@@ -66,13 +78,13 @@
         this.gettoothdata = function () {
             var o = {}
             o.id = this.htmlTooth.id
-            o.name =  this.selectedTooth.data('name')
+            o.name = this.selectedTooth.data('name')
             return o
         }
 
         this.selectTooth = function (obj) {
             this.htmlTooth = obj;
-            if(this.selectedTooth)
+            if (this.selectedTooth)
                 this.selectedTooth.removeClass("selected")
             this.selectedTooth = $('#' + obj.id)
             this.selectedTooth.addClass("selected")

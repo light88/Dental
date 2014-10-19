@@ -19,16 +19,15 @@
     %{--left column--}%
     <div class="col-md-3">
         <ul class="list-group">
-            <a href="${createLink(controller: 'patient', action: 'list')}" class="list-group-item
-            <g:if test="${controllerName == 'patient' && actionName == 'list'}">active</g:if>">List Patients</a>
-
             <a href="${createLink(controller: 'patient', action: 'newPatient')}" class="list-group-item
             <g:if test="${controllerName == 'patient' && actionName == 'newPatient'}">active</g:if>">New Patient</a>
+            <a href="${createLink(controller: 'patient', action: 'list')}" class="list-group-item
+            <g:if test="${controllerName == 'patient' && actionName == 'list'}">active</g:if>">List Patients</a>
         </ul>
 
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-7">
         <div class="tab-content">
             <g:form action="create" method="post" role="form">
                 <div class="form-group">

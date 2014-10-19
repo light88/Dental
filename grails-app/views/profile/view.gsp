@@ -30,6 +30,8 @@
         phone = ${profile.phone},
     </div>
 
+    <span class="glyphicon glyphicon-ok"> Email verified</span>
+
 </div>
 
 </body>

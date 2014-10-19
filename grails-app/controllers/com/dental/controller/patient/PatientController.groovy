@@ -65,10 +65,16 @@ class PatientController {
         def teethDL = patient.mouth.teeth.sort{it.name}.reverse().findAll {it.name.contains 'DL' }
         def teethDR = patient.mouth.teeth.sort{it.name}.findAll {it.name.contains 'DR' }
 
-        println "----" + teethUL*.name
-        println "----" + teethUR*.name
-        println "----" + teethDL*.name
-        println "----" + teethDR*.name
-        [patient: patient, teethUL : teethUL, teethUR : teethUR, teethDL : teethDL, teethDR : teethDR]
+        def teethUP = []
+        teethUP.addAll teethUL
+        teethUP.addAll teethUR
+
+        def teethDOWN = []
+        teethDOWN.addAll teethDL
+        teethDOWN.addAll teethDR
+
+        println "----" + teethUP*.name
+        println "----" + teethDOWN*.name
+        [patient: patient, teethUP : teethUP, teethDOWN : teethDOWN]
     }
 }
