@@ -44,15 +44,12 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Treatment</h3>
-                </div>
-
-            <div class="list-group" id="listTreatment">
-
             </div>
+            <div class="list-group treatment-list" id="listTreatment"></div>
 
-            <div class="panel-footer">
-                Footer
-            </div>
+            %{--<div class="panel-footer">--}%
+                %{--Footer--}%
+            %{--</div>--}%
         </div>
 
     </div>

@@ -18,3 +18,8 @@
     background-size: cover;
     background:url("../images/dentist-website-image.jpg") no-repeat center center;
 }
+
+.treatment-list {
+    max-height: 400px;
+    overflow-y: scroll;
+}
