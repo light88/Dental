@@ -43,8 +43,14 @@
 
                     <sec:ifLoggedIn>
                         <sec:ifAnyGranted roles="ROLE_USER">
-                            <li <g:if test="${controllerName == 'patient'}">class="active"</g:if>><a
-                                    href="${createLink(controller: 'patient')}">Patients</a></li>
+
+                        </sec:ifAnyGranted>
+
+                        <sec:ifAnyGranted roles="ROLE_DENTIST">
+                            <li <g:if test="${controllerName == 'patient'}">class="active"</g:if>>
+                                <a href="${createLink(controller: 'patient')}">Patients</a></li>
+                            <li <g:if test="${controllerName == 'profile'}">class="active"</g:if>>
+                                <a href="${createLink(controller: 'profile')}">Profile</a></li>
                         </sec:ifAnyGranted>
 
                         <li><a href="${createLink(controller: 'auth', action: 'doLogout')}">Log out</a></li>

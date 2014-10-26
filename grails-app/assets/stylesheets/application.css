@@ -12,3 +12,9 @@
 *= tooth.css
 ** require signin
 */
+
+.main-page {
+    height: 400px;
+    background-size: cover;
+    background:url("../images/dentist-website-image.jpg") no-repeat center center;
+}

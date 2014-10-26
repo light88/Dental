@@ -1,7 +1,7 @@
 .tooth {
     width: 35px;
     height: 35px;
-    background-image: url("/Dental/assets/teeth13.png");
+    background-image: url("../images/teeth13.png");
 }
 
 .red {
@@ -21,5 +21,7 @@
 }
 
 .selected {
-    border: 1px solid #00b3ee ;
+    box-shadow: rgb(80, 130, 229) 0px 0px 0px 2px;
+    border-radius: 3px;
+    transition: box-shadow ease-in-out .1s;
 }

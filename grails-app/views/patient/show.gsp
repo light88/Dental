@@ -102,6 +102,8 @@
             data: toothConfig.gettoothdata(),
             type: 'POST'
         }).done(function (data, textStatus, jqXHR) {
+//            dataHtml  = data.replace(/<br \/>/g, '/n');
+
             b.updateListTreatment(data)
         });
     }
@@ -114,6 +116,7 @@
 
         var tooth = toothConfig.gettoothdata()
         tooth.treatment = $('textarea').val()
+//        tooth.treatment = val.replace(/\n\r?/g, '<br />');
         $.ajax({
             url: "${createLink(controller: 'treatment', action: 'treat')}",
             data: tooth,

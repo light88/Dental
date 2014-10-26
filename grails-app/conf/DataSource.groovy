@@ -1,5 +1,5 @@
 dataSource {
-//    pooled = true
+    pooled = true
 //    jmxExport = true
     driverClassName = "com.mysql.jdbc.Driver"
     dialect = "org.hibernate.dialect.MySQLDialect"
@@ -21,16 +21,16 @@ environments {
             password = "rootpass"
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/dental_dev"
-//            url = "jdbc:mysql://localhost:3306/fitupness_dev"
         }
     }
     test {
             // 91.245....
         dataSource {
-            username = "fitness"
-            password = "ShKEZLLthZZBSdzX"
+            pooled = true
+            username = "light"
+            password = 'light$'
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://127.0.0.1:3306/fitness"
+            url = "jdbc:mysql://localhost:3306/light"
         }
 
 //        dataSource {

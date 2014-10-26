@@ -4,8 +4,8 @@
 
 
 // TODO
-/* add tooth to mouth
- * add tooth info on html
+/* add tooth to mouth - done.
+ * add tooth info on html - done.
  *
  *
  * add many to many between dentist - Patient

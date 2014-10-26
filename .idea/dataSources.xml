@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="777332026">
+  <component name="DataSourceManagerImpl" format="xml" hash="2246247496">
     <data-source source="LOCAL" name="Dental dev" uuid="a09ac023-7fa5-46c8-b0e1-9b6679e7e438">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/fitupness</jdbc-url>
       <user-name>root</user-name>
       <user-password>dfd8dfc5dfc5dfdedfdadfcbdfd9dfd9</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="MySQL - light@10.10.200.1" uuid="bb9ea41d-57e2-48e8-9c94-6e1f6a204608">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://10.10.200.1:3306/light</jdbc-url>
+      <user-name>light</user-name>
+      <user-password>dfc6dfc3dfcddfc2dfdedf8e</user-password>
+      <driver-properties>
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+      </driver-properties>
       <libraries />
     </data-source>
   </component>

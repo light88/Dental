@@ -25,7 +25,7 @@ class AuthService {
         if (user.validate() /*&& profile.validate()*/) {
             user.save(flush: true)
 
-            def roleSportsman = Role.findByAuthority("ROLE_USER")
+            def roleSportsman = Role.findByAuthority("ROLE_DENTIST")
             UserRole.create(user, roleSportsman, true)
             return user
         } else {

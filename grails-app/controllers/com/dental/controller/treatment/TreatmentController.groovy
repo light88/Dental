@@ -2,6 +2,7 @@ package com.dental.controller.treatment
 
 import com.dental.domain.Tooth
 import com.dental.domain.ToothTreatment
+import org.springframework.web.util.HtmlUtils
 
 class TreatmentController {
 
@@ -16,6 +17,9 @@ class TreatmentController {
         def tooth = Tooth.get(params.id)
 
         println '+++'+params
+
+        def treatmentEscape = HtmlUtils.htmlEscape params.treatment
+        println "treatment : ${treatmentEscape}"
         tooth.addToTeethTreatment(new ToothTreatment(treatment: params.treatment,
                 date: new Date(), dentist: dentist))
         tooth.save(flush: true)

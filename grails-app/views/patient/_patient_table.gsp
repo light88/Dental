@@ -5,6 +5,7 @@
     <th>DateOfBirth</th>
     <th>Gender</th>
     <th>Phone</th>
+    <th>Link</th>
 </tr>
 <g:each in="${patients}" var="patient">
     <tr>
@@ -14,5 +15,6 @@
         <td>${patient.dateOfBirth}</td>
         <td>${patient.gender}</td>
         <td>${patient.phone}</td>
+        <td><a href="${createLink(controller: 'patient', action: 'show', id: "${patient.id}")}">View</a></td>
     </tr>
 </g:each>
