@@ -7,12 +7,15 @@ import grails.transaction.Transactional
 class AuthService {
 
     def signup(params) {
+        println "params -- ${params}"
 
-        params << [gender : true, dateOfBirth : new Date()]
         def user = new User(params)
-
         def profile = new Profile(params)
-        profile.save(flush: true)
+        profile.dateOfBirth = new Date()
+
+        def p = profile.save(flush: true)
+
+        println profile.errors
 
         def rating = new Rating()
         rating.save()

@@ -58,6 +58,13 @@
             </div>
 
             <div class="form-group">
+                <g:radioGroup values="['male, female']" name="gender">
+                    <g:radio name="gender" value="1" align="absmiddle" />Male
+                    <g:radio name="gender" value="0" />Female
+                </g:radioGroup>
+            </div>
+
+            <div class="form-group">
                 <strong>login/email</strong>
                 <g:if test="${user?.hasErrors()}">
                     <p class="bg-danger">

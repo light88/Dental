@@ -43,7 +43,10 @@
                 </div>
 
                 <div class="form-group">
-                    <g:textField class="form-control" type="text" name="gender" placeholder="Gender"/>
+                    <g:radioGroup values="['male, female']" name="gender">
+                        <g:radio name="gender" value="1" align="absmiddle" />Male
+                        <g:radio name="gender" value="0" />Female
+                    </g:radioGroup>
                 </div>
 
                 <div class="form-group">

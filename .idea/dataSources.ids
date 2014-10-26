@@ -99,7 +99,7 @@
       <column name="date_of_birth" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
       <column name="dentist_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="firstname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="gender" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="gender" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
       <column name="lastname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="mouth_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="patronimic" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
@@ -118,7 +118,7 @@
       <column name="address_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <column name="date_of_birth" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
       <column name="firstname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="gender" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="gender" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
       <column name="lastname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="patronimic" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="phone" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>

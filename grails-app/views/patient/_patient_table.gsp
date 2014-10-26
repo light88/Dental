@@ -13,7 +13,7 @@
         <td>${patient.lastname}</td>
         <td>${patient.patronimic}</td>
         <td>${patient.dateOfBirth}</td>
-        <td>${patient.gender}</td>
+        <td><g:gender gender="${patient.gender}"/></td>
         <td>${patient.phone}</td>
         <td><a href="${createLink(controller: 'patient', action: 'show', id: "${patient.id}")}">View</a></td>
     </tr>

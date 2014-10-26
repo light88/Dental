@@ -6,7 +6,7 @@ class Profile {
     String lastname
     String patronimic
     String phone
-    boolean gender
+    byte gender
     Date dateOfBirth
 
     Address address
@@ -16,5 +16,6 @@ class Profile {
     static constraints = {
         phone nullable: true
         address nullable: true
+        dateOfBirth defaultValue : new Date()
     }
 }

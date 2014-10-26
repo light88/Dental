@@ -12,16 +12,15 @@ class PatientService {
 
     // TODO coding logic to save brand new patient
     def createPatient(params) {
+
         def dentist = Dentist.findByProfile(springSecurityService.currentUser.profile)
 
         if(!dentist)
             throw new NullPointerException("dentist is $dentist")
 
-        params << [dateOfBirth : new Date()]
+        params <<[dateOfBirth : new Date()]
         def patient = new Patient(params)
-
         def mouth = new Mouth()
-
         def range = 1..8
 
         range.each { i ->
@@ -38,13 +37,12 @@ class PatientService {
         }
 
         patient.mouth = mouth
-
-//        patient.save(flush: true)
-
         dentist.addToPatients(patient)
 
-        println patient.validate()
         println dentist.validate()
+
+        println "p validate = " + patient.validate()
+        println "p error = " + patient.errors
 
         if(dentist.save()){
             println dentist.errors

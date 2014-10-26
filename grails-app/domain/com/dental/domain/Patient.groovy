@@ -6,7 +6,7 @@ class Patient {
     String lastname
     String patronimic
     String phone
-    boolean gender
+    byte gender
     Date dateOfBirth
 
     Address address

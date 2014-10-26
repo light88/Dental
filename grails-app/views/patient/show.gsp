@@ -35,7 +35,7 @@
 
         <div>
             <textarea class="form-control col-md-12" rows="7"></textarea>
-            <input class="btn btn-success" onclick="submit();" type="button" value="Submit"/>
+            <input class="btn btn-success col-md-4 pull-right" onclick="submit();" type="button" value="Submit"/>
         </div>
     </div>
 
