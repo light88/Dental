@@ -10,35 +10,23 @@ class AuthService {
         println "params -- ${params}"
 
         def user = new User(params)
+
         def profile = new Profile(params)
         profile.dateOfBirth = new Date()
-
-        def p = profile.save(flush: true)
-
-        println profile.errors
+        profile.save(flush: true, failOnError: true)
 
         def rating = new Rating()
-        rating.save()
+        rating.save(flush: true)
 
         def dentist = new Dentist(profile: profile, rating: rating)
-        dentist.save()
+        dentist.save(failOnError: true)
 
         user.profile = profile
+        user.save(flush: true, failOnError: true)
 
-        if (user.validate() /*&& profile.validate()*/) {
-            user.save(flush: true)
-
-            def roleSportsman = Role.findByAuthority("ROLE_DENTIST")
-            UserRole.create(user, roleSportsman, true)
-            return user
-        } else {
-            if (user.hasErrors()) {
-                user.errors.each { error ->
-                    println error
-                }
-            }
-            //throw new RuntimeException('Error signup...')
-        }
+        def roleSportsman = Role.findByAuthority(RoleService.ROLE_DENTIST)
+        UserRole.create(user, roleSportsman, true)
         return user
     }
+
 }

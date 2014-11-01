@@ -168,7 +168,7 @@ grails.plugin.springsecurity.authority.className = 'com.dental.domain.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/'              : ['permitAll'],
         '/index'         : ['permitAll'],
-        '/index.gsp'     : ['permitAll'],
+        '/about.gsp'     : ['permitAll'],
         '/assets/**'     : ['permitAll'],
         '/**/js/**'      : ['permitAll'],
         '/**/css/**'     : ['permitAll'],

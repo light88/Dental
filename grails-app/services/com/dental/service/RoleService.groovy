@@ -7,12 +7,12 @@ import grails.transaction.Transactional
 class RoleService {
 
     public static final String ROLE_ADMIN = 'ROLE_ADMIN'
-    public static final String ROLE_TRAINER = 'ROLE_TRAINER'
-    public static final String ROLE_SPORTSMAN = 'ROLE_SPORTSMAN'
+    public static final String ROLE_DENTIST = 'ROLE_DENTIST'
+    public static final String ROLE_PATIENT = 'ROLE_PATIENT'
 
     def init() {
-        new Role(authority: ROLE_SPORTSMAN).save()
+        new Role(authority: ROLE_DENTIST).save()
+        new Role(authority: ROLE_PATIENT).save()
         new Role(authority: ROLE_ADMIN).save()
-        new Role(authority: ROLE_TRAINER).save()
     }
 }

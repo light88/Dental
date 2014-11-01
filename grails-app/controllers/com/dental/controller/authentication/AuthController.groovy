@@ -2,7 +2,6 @@ package com.dental.controller.authentication
 
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.annotation.Secured
-import org.springframework.validation.Errors
 
 @Secured('permitAll')
 class AuthController {
@@ -49,14 +48,14 @@ class AuthController {
     }
 
     def doSignup() {
-        def user = authService.signup(params)
-        if (user.hasErrors()) {
-            flash.errors = user.errors
+        try {
+            def user = authService.signup(params)
+            flash.succed = 'Signup completed'
+            redirect action: 'login'
+        } catch (e) {
+            flash.errors = e.errors
             redirect action: 'signup'
-            return Errors
         }
-        flash.succed = 'Signup completed'
-        redirect action: 'login'
     }
 
     def authfail() {

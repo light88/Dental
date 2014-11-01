@@ -7,7 +7,7 @@ import org.springframework.security.access.annotation.Secured
 class AboutController {
 
     def index() {
-
+        render view: 'about'
     }
 
     def save() {

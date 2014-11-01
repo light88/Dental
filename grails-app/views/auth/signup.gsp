@@ -10,7 +10,6 @@
 <head>
     <meta name="layout" content="main"/>
     <title>Signup</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
@@ -22,54 +21,39 @@
         <g:form action="doSignup" method="post" role="form">
             <div class="form-group">
                 <strong>FirstName</strong>
-            %{--<g:if test="${user?.hasErrors()}">--}%
-            %{--1<g:fieldError field="profile.firstname" bean="${user}" >--}%
-            %{--2${it.message}--}%
-            %{--</g:fieldError>--}%
-            %{--<h4><g:enderErrors bean="${user}" field="profile.firstname"/></h4>--}%
-            %{--</g:if>--}%
-                ${flash.errors?.fieldErrorCount}
-                <g:renderErrors bean="${flash.errors}"/>
-
-                <g:if test="${user?.hasErrors()}">
-                    <p class="bg-danger">
-                        <g:fieldError field="firstname" bean="${user}"></g:fieldError>
-                    </p>
+                <g:if test="${flash.errors?.getFieldError("firstname")}">
+                    <p class="bg-danger">Incorrect value</p>
                 </g:if>
                 <g:textField class="form-control" type="text" name="firstname"/>
             </div>
 
             <div class="form-group">
                 <strong>LastName</strong>
-                <g:if test="${user?.hasErrors()}">
-                    <p class="bg-danger">
-                        <g:fieldError field="lastname" bean="${user}"></g:fieldError>
-                    </p>
+                <g:if test="${flash.errors?.getFieldError("lastname")}">
+                    <p class="bg-danger">Incorrect value</p>
                 </g:if>
                 <g:textField class="form-control" type="text" name="lastname"/>
             </div>
 
             <div class="form-group">
                 <strong>Patronimic</strong>
-                <g:if test="${user?.hasErrors()}">
-                    <p class="bg-danger"><g:fieldError field="patronimic" bean="${user}"></g:fieldError></p>
+                <g:if test="${flash.errors?.getFieldError("patronimic")}">
+                    <p class="bg-danger">Incorrect value</p>
                 </g:if>
                 <g:textField class="form-control" type="text" name="patronimic"/>
             </div>
 
             <div class="form-group">
                 <g:radioGroup values="['male, female']" name="gender">
-                    <g:radio name="gender" value="1" align="absmiddle" />Male
-                    <g:radio name="gender" value="0" />Female
+                    <g:radio name="gender" checked="checked" value="1" align="absmiddle"/>Male
+                    <g:radio name="gender" value="0"/>Female
                 </g:radioGroup>
             </div>
 
             <div class="form-group">
                 <strong>login/email</strong>
-                <g:if test="${user?.hasErrors()}">
-                    <p class="bg-danger">
-                        <g:fieldError field="username" bean="${user}"></g:fieldError>
-                    </p>
+                <g:if test="${flash.errors?.getFieldError("username")}">
+                    <p class="bg-danger">Incorrect value</p>
                 </g:if>
                 <div class="input-group">
                     <span class="input-group-addon">@</span>
@@ -79,10 +63,8 @@
 
             <div class="form-group">
                 <strong>password</strong>
-                <g:if test="${user?.hasErrors()}">
-                    <p class="bg-danger">
-                        <g:fieldError field="username" bean="${user}"></g:fieldError>
-                    </p>
+                <g:if test="${flash.errors?.getFieldError("password")}">
+                    <p class="bg-danger">Incorrect value</p>
                 </g:if>
                 <g:textField class="form-control" type="password" name="password"/>
             </div>
