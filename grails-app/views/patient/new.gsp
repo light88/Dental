@@ -27,37 +27,38 @@
 
     </div>
 
+    %{--right column--}%
     <div class="col-md-7">
         <div class="tab-content">
             <g:form action="create" method="post" role="form">
                 <div class="form-group">
-                    <g:textField class="form-control" type="text" name="firstname" placeholder="FirstName"/>
+                    <g:textField class="form-control input-lg" type="text" name="firstname" placeholder="FirstName"/>
                 </div>
 
                 <div class="form-group">
-                    <g:textField class="form-control" type="text" name="lastname" placeholder="LastName"/>
+                    <g:textField class="form-control input-lg" type="text" name="lastname" placeholder="LastName"/>
                 </div>
 
                 <div class="form-group">
-                    <g:textField class="form-control" type="text" name="patronimic" placeholder="Patronimic"/>
+                    <g:textField class="form-control input-lg" type="text" name="patronimic" placeholder="Patronimic"/>
                 </div>
 
                 <div class="form-group">
                     <g:radioGroup values="['male, female']" name="gender">
-                        <g:radio name="gender" value="1" align="absmiddle" />Male
-                        <g:radio name="gender" value="0" />Female
+                        <g:radio name="gender" value="1" align="absmiddle"/>Male
+                        <g:radio name="gender" value="0"/>Female
                     </g:radioGroup>
                 </div>
 
                 <div class="form-group">
-                    <g:textField class="form-control" type="text" name="phone" placeholder="Phone"/>
+                    <g:textField class="form-control input-lg" type="text" name="phone" placeholder="Phone"/>
                 </div>
 
                 <div class="form-group">
-                    <input type="date" name="dateOfBirth" class="form-control" placeholder="DOB"/>
+                    <input type="date" name="dateOfBirth" class="form-control input-lg" placeholder="DOB"/>
                 </div>
 
-                <g:submitButton class="btn btn-info col-md-4 pull-right" name="Submit"/>
+                <g:submitButton class="btn btn-primary btn-lg col-md-4 pull-right" name="Submit"/>
             </g:form>
         </div>
     </div>

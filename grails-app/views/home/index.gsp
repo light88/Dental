@@ -12,10 +12,10 @@
     <title></title>
 </head>
 
-<body style="height: 100%">
-<div class="container main-page">
+<body>
+<div>
     <h1 class="title">Home page</h1>
-    
+
 </div>
 </body>
 </html>

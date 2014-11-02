@@ -24,7 +24,7 @@
                 <g:if test="${flash.errors?.getFieldError("firstname")}">
                     <p class="bg-danger">Incorrect value</p>
                 </g:if>
-                <g:textField class="form-control" type="text" name="firstname"/>
+                <g:textField class="form-control input-lg" type="text" name="firstname"/>
             </div>
 
             <div class="form-group">
@@ -32,7 +32,7 @@
                 <g:if test="${flash.errors?.getFieldError("lastname")}">
                     <p class="bg-danger">Incorrect value</p>
                 </g:if>
-                <g:textField class="form-control" type="text" name="lastname"/>
+                <g:textField class="form-control input-lg" type="text" name="lastname"/>
             </div>
 
             <div class="form-group">
@@ -40,7 +40,7 @@
                 <g:if test="${flash.errors?.getFieldError("patronimic")}">
                     <p class="bg-danger">Incorrect value</p>
                 </g:if>
-                <g:textField class="form-control" type="text" name="patronimic"/>
+                <g:textField class="form-control input-lg" type="text" name="patronimic"/>
             </div>
 
             <div class="form-group">
@@ -57,7 +57,7 @@
                 </g:if>
                 <div class="input-group">
                     <span class="input-group-addon">@</span>
-                    <g:textField class="form-control " type="email" name="username"/>
+                    <g:textField class="form-control input-lg" type="email" name="username"/>
                 </div>
             </div>
 
@@ -66,10 +66,10 @@
                 <g:if test="${flash.errors?.getFieldError("password")}">
                     <p class="bg-danger">Incorrect value</p>
                 </g:if>
-                <g:textField class="form-control" type="password" name="password"/>
+                <g:textField class="form-control input-lg" type="password" name="password"/>
             </div>
 
-            <g:submitButton class="btn btn-primary col-md-4 pull-right" name="Submit"/>
+            <g:submitButton class="btn btn-primary btn-lg col-md-4 pull-right" name="Submit"/>
         </g:form>
     </div>
 </div>

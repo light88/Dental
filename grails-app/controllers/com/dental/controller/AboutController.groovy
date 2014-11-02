@@ -1,12 +1,16 @@
 package com.dental.controller
 
 import com.dental.domain.City
+import com.dental.domain.Notify
 import org.springframework.security.access.annotation.Secured
 
 @Secured('permitAll')
 class AboutController {
 
     def index() {
+        def notify = new Notify(mail: 'aaa@agmail.com', description: 'descddfs f df ', notified: true, createdOn: new Date())
+        notify.save(flush: true, failOnError: true)
+
         render view: 'about'
     }
 

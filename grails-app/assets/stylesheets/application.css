@@ -10,13 +10,18 @@
 *= require bootstrap
 *= require_self
 *= tooth.css
-** require signin
+*= require signin
 */
 
 .main-page {
-    height: 400px;
+    height: 100%;
     background-size: cover;
     background:url("../images/dentist-website-image.jpg") no-repeat center center;
+}
+
+input[type="email"] {
+    background: none;
+    color: #000000;
 }
 
 .treatment-list {

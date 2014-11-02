@@ -92,6 +92,15 @@
       <exported-key name="FK_r942ln0cs97gnetcmoied2mu3" table="patient" schema="" catalog="dental_dev" columns="mouth_id"/>
       <exported-key name="FK_rqk9cx1eesyomuqxqo05fyofa" table="tooth" schema="" catalog="dental_dev" columns="mouth_id"/>
     </table>
+    <table name="notify" schema="" catalog="dental_dev" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="created_on" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="mail" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="notified" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
     <table name="patient" schema="" catalog="dental_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
       <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>

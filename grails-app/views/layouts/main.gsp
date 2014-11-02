@@ -38,9 +38,6 @@
                     <li <g:if test="${controllerName == 'home'}">class="active"</g:if>><a
                             href="${createLink(controller: 'home')}">Home</a></li>
 
-                    <li <g:if test="${controllerName == 'about'}">class="active"</g:if>><a
-                            href="${createLink(controller: 'about')}">About</a></li>
-
                     <sec:ifLoggedIn>
                         <sec:ifAnyGranted roles="ROLE_USER">
 

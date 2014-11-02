@@ -29,23 +29,15 @@
 
 <g:form class="form-signin" role="form" action="doLogin" method="post">
     <h2 class="form-signin-heading">Please sign in</h2>
-    <input class="form-control" placeholder="login/mail" required autofocus id="login" type='email' name='username'/>
+    <input class="form-control" placeholder="email" required autofocus id="login" type='email'
+           name='username'/>
     <input class="form-control" placeholder="password" required id="password" type='password' name='password'/>
 
-    <label class="checkbox">
+    <label class="checkbox pull-right">
         <g:checkBox name="remember" value="${true}"/>remember
     </label>
     <g:submitButton class="btn btn-primary btn-lg btn-block" name="submit" value="Submit"/><br>
     <a class="btn btn-link " href="<g:createLink action="signup"/>">signup</a>
 </g:form>
-
-<div>
-    user   :[login=user@gmail.com, pass:123456]
-</div>
-
-<div>
-    trainer:[login=trainer@gmail.com, pass:123456]
-</div>
-
 </body>
 </html>

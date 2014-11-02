@@ -1,3 +1,4 @@
+import com.dental.domain.Notify
 import com.dental.domain.Role
 
 class BootStrap {
@@ -11,6 +12,7 @@ class BootStrap {
 
         def roleDentist = new Role(authority: "ROLE_DENTIST")
         roleDentist.save()
+
 
 //
 //        def p1 = [phone: '00000000', username: 'user@gmail.com', lastname: 'UserLast', firstname: 'UserFirst', patronimic: 'qqqqq', password: '123456', gender : true, dateOfBirth : new Date()]

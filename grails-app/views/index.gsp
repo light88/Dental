@@ -1,142 +1,48 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta name="layout" content="main"/>
-		<title>Welcome to Grails</title>
-		<style type="text/css" media="screen">
-			#status {
-				background-color: #eee;
-				border: .2em solid #fff;
-				margin: 2em 2em 1em;
-				padding: 1em;
-				width: 12em;
-				float: left;
-				-moz-box-shadow: 0px 0px 1.25em #ccc;
-				-webkit-box-shadow: 0px 0px 1.25em #ccc;
-				box-shadow: 0px 0px 1.25em #ccc;
-				-moz-border-radius: 0.6em;
-				-webkit-border-radius: 0.6em;
-				border-radius: 0.6em;
-			}
+<html lang="en">
 
-			.ie6 #status {
-				display: inline; /* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
-			}
+<head>
 
-			#status ul {
-				font-size: 0.9em;
-				list-style-type: none;
-				margin-bottom: 0.6em;
-				padding: 0;
-			}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learzing is a new level of education.">
+    <title>Dental</title>
+    <link rel="stylesheet" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
+    <asset:stylesheet src="application.css"/>
+    <asset:stylesheet src="landingpage.css"/>
+</head>
 
-			#status li {
-				line-height: 1.3;
-			}
+<body class="main-page">
 
-			#status h1 {
-				text-transform: uppercase;
-				font-size: 1.1em;
-				margin: 0 0 0.3em;
-			}
+<div class="container">
 
-			#page-body {
-				margin: 2em 1em 1.25em 18em;
-			}
+    <h3>Enter your email to get notified on release.</h3>
 
-			h2 {
-				margin-top: 1em;
-				margin-bottom: 0.3em;
-				font-size: 1em;
-			}
+    <div><a class="btn btn-primary" href="${createLink(controller: 'about')}">About.</a>
+        <a class="btn btn-primary" href="${createLink(controller: 'home')}">Home</a>
+        <a class="btn btn-primary" href="${createLink(controller: 'auth', action: 'login')}">login</a>
+        <a class="btn btn-primary" href="${createLink(controller: 'auth', action: 'signup')}">signup</a>
+    </div>
 
-			p {
-				line-height: 1.5;
-				margin: 0.25em 0;
-			}
+    <div class="row " style="margin-top: 250px;">
+        <div class="col-md-6 col-sm-12 col-md-offset-3">
+            <g:form controller="notify" action="addNotifyEmail" class="form-horizontal " role="form">
+                <div class="form-group">
+                    <div class="col-md-7 col-sm-6 col-sm-offset-1 col-md-offset-0">
+                        <input class="form-control input-lg" name="mail" type="email" placeholder="Email:" required>
+                    </div>
 
-			#controller-list ul {
-				list-style-position: inside;
-			}
+                    <div class="col-md-5 col-sm-4">
+                        <button type="submit"
+                                class="btn btn-success btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTIFY&nbsp;ME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    </div>
+                </div>
+            </g:form>
+            <strong><span id="subscribeFormResult" class="alertMsg"></span></strong>
+        </div>
+    </div>
+</div>
 
-			#controller-list li {
-				line-height: 1.3;
-				list-style-position: inside;
-				margin: 0.25em 0;
-			}
-
-			@media screen and (max-width: 480px) {
-				#status {
-					display: none;
-				}
-
-				#page-body {
-					margin: 0 1em 1em;
-				}
-
-				#page-body h1 {
-					margin-top: 0;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div id="status" role="complementary">
-			<h1>Application Status</h1>
-			<ul>
-				<li>App version: <g:meta name="app.version"/></li>
-				<li>Grails version: <g:meta name="app.grails.version"/></li>
-				<li>Groovy version: ${GroovySystem.getVersion()}</li>
-				<li>JVM version: ${System.getProperty('java.version')}</li>
-				<li>Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</li>
-				<li>Controllers: ${grailsApplication.controllerClasses.size()}</li>
-				<li>Domains: ${grailsApplication.domainClasses.size()}</li>
-				<li>Services: ${grailsApplication.serviceClasses.size()}</li>
-				<li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
-			</ul>
-			<h1>Installed Plugins</h1>
-			<ul>
-				<g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-					<li>${plugin.name} - ${plugin.version}</li>
-				</g:each>
-			</ul>
-		</div>
-		<div id="page-body" role="main">
-			<h1>Welcome to Grails</h1>
-			<p>Congratulations, you have successfully started your first Grails application! At the moment
-			   this is the default page, feel free to modify it to either redirect to a controller or display whatever
-			   content you may choose. Below is a list of controllers that are currently deployed in this application,
-			   click on each to execute its default action:</p>
-
-			<div id="controller-list" role="navigation">
-				<h2>Available Controllers:</h2>
-				<ul>
-					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
-					</g:each>
-				</ul>
-			</div>
-		</div>
-
-    <style>
-
-        input[type="text"] {
-            border-radius: 2em;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-        input[type="text"]:focus {
-            border-radius: 2em;
-            border-color: blueviolet;
-            padding-left: 10px;
-            padding-right: 10px;
-            outline: none;
-        }
-
-
-    </style>
-
-    <input type="text" aa="1" />
-	</body>
+</body>
 </html>
