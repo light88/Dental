@@ -16,3 +16,13 @@
  *
  *
  */
+
+/*
+db migration
+
+dmb-
+
+grails test dbm-gorm-diff second.groovy --add
+
+
+ */

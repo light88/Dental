@@ -18,50 +18,54 @@
 
     %{--left column--}%
     <div class="col-md-3">
-        <ul class="list-group">
+        <ul class="nav nav-pills nav-stacked">
+        <li <g:if test="${controllerName == 'patient' && actionName == 'newPatient'}">class="active"</g:if>">
             <a href="${createLink(controller: 'patient', action: 'newPatient')}" class="list-group-item
-            <g:if test="${controllerName == 'patient' && actionName == 'newPatient'}">active</g:if>">New Patient</a>
-            <a href="${createLink(controller: 'patient', action: 'list')}" class="list-group-item
-            <g:if test="${controllerName == 'patient' && actionName == 'list'}">active</g:if>">List Patients</a>
+            ">New Patient</a>
+        </li>
+            <li <g:if test="${controllerName == 'patient' && actionName == 'list'}">class="active"</g:if>><a
+                    href="${createLink(controller: 'patient', action: 'list')}" class="list-group-item
+            ">List Patients</a></li>
         </ul>
 
     </div>
 
-    %{--right column--}%
-    <div class="col-md-7">
-        <div class="tab-content">
-            <g:form action="create" method="post" role="form">
-                <div class="form-group">
-                    <g:textField class="form-control input-lg" type="text" name="firstname" placeholder="FirstName"/>
-                </div>
 
-                <div class="form-group">
-                    <g:textField class="form-control input-lg" type="text" name="lastname" placeholder="LastName"/>
-                </div>
+%{--right column--}%
+<div class="col-md-7">
+    <div class="tab-content">
+        <g:form action="create" method="post" role="form">
+            <div class="form-group">
+                <g:textField class="form-control input-lg" type="text" name="firstname" placeholder="FirstName"/>
+            </div>
 
-                <div class="form-group">
-                    <g:textField class="form-control input-lg" type="text" name="patronimic" placeholder="Patronimic"/>
-                </div>
+            <div class="form-group">
+                <g:textField class="form-control input-lg" type="text" name="lastname" placeholder="LastName"/>
+            </div>
 
-                <div class="form-group">
-                    <g:radioGroup values="['male, female']" name="gender">
-                        <g:radio name="gender" value="1" align="absmiddle"/>Male
-                        <g:radio name="gender" value="0"/>Female
-                    </g:radioGroup>
-                </div>
+            <div class="form-group">
+                <g:textField class="form-control input-lg" type="text" name="patronimic" placeholder="Patronimic"/>
+            </div>
 
-                <div class="form-group">
-                    <g:textField class="form-control input-lg" type="text" name="phone" placeholder="Phone"/>
-                </div>
+            <div class="form-group">
+                <g:radioGroup values="['male, female']" name="gender">
+                    <g:radio name="gender" value="1" align="absmiddle"/>Male
+                    <g:radio name="gender" value="0"/>Female
+                </g:radioGroup>
+            </div>
 
-                <div class="form-group">
-                    <input type="date" name="dateOfBirth" class="form-control input-lg" placeholder="DOB"/>
-                </div>
+            <div class="form-group">
+                <g:textField class="form-control input-lg" type="text" name="phone" placeholder="Phone"/>
+            </div>
 
-                <g:submitButton class="btn btn-primary btn-lg col-md-4 pull-right" name="Submit"/>
-            </g:form>
-        </div>
+            <div class="form-group">
+                <input type="date" name="dateOfBirth" class="form-control input-lg" placeholder="DOB"/>
+            </div>
+
+            <g:submitButton class="btn btn-primary btn-lg col-md-4 pull-right" name="Submit"/>
+        </g:form>
     </div>
+</div>
 
 </div>
 

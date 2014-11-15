@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>LIST</title>
+    <title>Patients</title>
 </head>
 
 <body>
@@ -17,42 +17,38 @@
 <div class="row">
 
     %{--left column--}%
-    <div class="col-md-3">
-        <ul class="list-group">
-            <a href="${createLink(controller: 'patient', action: 'newPatient')}" class="list-group-item
-            <g:if test="${controllerName == 'patient' && actionName == 'new'}">active</g:if>">New Patient</a>
-            <a href="${createLink(controller: 'patient', action: 'list')}" class="list-group-item
-            <g:if test="${controllerName == 'patient' && actionName == 'list'}">active</g:if>">List Patients</a>
+    <div class="col-sm-3  affix" style="width: 23%; top: 70px;">
 
-        </ul>
+    <ul class="nav nav-pills nav-stacked">
+    <li <g:if test="${controllerName == 'patient' && actionName == 'newPatient'}">class="active"</g:if>">
+        <a href="${createLink(controller: 'patient', action: 'newPatient')}" class="list-group-item
+            ">New Patient</a>
+    </li>
+        <li <g:if test="${controllerName == 'patient' && actionName == 'list'}">class="active"</g:if>><a
+                href="${createLink(controller: 'patient', action: 'list')}" class="list-group-item
+            ">List Patients</a></li>
+    </ul>
 
         <g:formRemote name="search" url="[controller: 'patient', action: 'search']"
                       update="patientsTable">
-            <g:textField class="form-control" type="text" name="name" placeholder="Name"/>
+            <g:textField class="form-control" type="text" name="name" placeholder="Search"/>
             <g:submitButton class="btn btn-success form-control" name="Search"/>
         </g:formRemote>
 
     </div>
 
-    <div class="col-md-9">
-        <div class="tab-content">
+    %{--right column--}%
+    <div class="col-md-9 col-md-offset-3">
 
+        <div class="tab-content"  style="margin-top: 19px;">
             <div class="panel panel-default">
                 <div class="panel-heading panel-title text-center">Patient List</div>
-                <table class="table table-striped" id="patientsTable">
+                <table class="table " id="patientsTable">
                     <g:render template="patient_table" bean="${patients}"/>
                 </table>
             </div>
         </div>
+        <g:paginate class="pull-right" controller="patient" action="list" total="${size}" max="10" maxsteps="5"/>
     </div>
-
-    <div>
-
-        <g:paginate controller="patient" action="list" total="${size}"/>
-
-        %{--<g:paginate next="Forward" prev="Back"--}%
-        %{--maxsteps="0" controller="profile"--}%
-        %{--action="list" total="${size}" />--}%
-
 </body>
 </html>

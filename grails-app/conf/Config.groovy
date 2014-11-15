@@ -96,6 +96,12 @@ environments {
     }
 }
 
+//dbmigration
+
+grails.plugin.databasemigration.updateOntart = true
+//grails.plugin.databasemigration.reports.changelogFileName = changelog-reports.groovy
+grails.plugin.databasemigration.updateOnStartFileNames = ['changelog.groovy']
+
 // log4j configuration
 log4j.main = {
     // Example of changing the log pattern for the default console appender:
@@ -116,6 +122,11 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+//twitter bootstrap
+grails.plugins.twitterbootstrap.fixtaglib = true
+
+
 
 // Added by the Spring Security Core plugin:
 //defauls

@@ -20,8 +20,8 @@
 <body>
 
 %{--header--}%
-<div>
-    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+<div style="margin-bottom: 51px;">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -60,16 +60,16 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container" style="margin-bottom: 40px">
     <g:layoutBody/>
 </div>
-%{--
-<div class="navbar navbar-default --}%%{--navbar-fixed-bottom--}%%{--">
+
+<div class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
         <p class="navbar-text pull-left">Copyright</p>
         <a class="navbar-btn btn btn-danger pull-right">Subscribe</a>
     </div>
-</div>--}%
+</div>
 
 </body>
 </html>

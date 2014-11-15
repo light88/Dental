@@ -33,11 +33,13 @@ environments {
             url = "jdbc:mysql://localhost:3306/light"
         }
 
+//        local
 //        dataSource {
+//            logSql = true
 //            username = "root"
 //            password = "rootpass"
 //            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-//            url = "jdbc:mysql://127.0.0.1:3306/fitupness_dev"
+//            url = "jdbc:mysql://localhost:3306/dental_test"
 //        }
 
     }

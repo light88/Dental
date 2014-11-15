@@ -1,4 +1,5 @@
 package com.dental.controller.patient
+
 import com.dental.domain.Patient
 
 class PatientController {
@@ -10,9 +11,13 @@ class PatientController {
     def dentalService
 
     def list() {
+        Objects.isNull(params)
+//        def o = params.page ? params.int('page') * 10 : 0
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        println(params)
         def dentist = dentalService.dentist()
-        render view: 'list', model: [patients: Patient.findAllByDentist(dentist, params),
-                                     size: dentist.patients.size()]
+        render view: 'list', model: [patients: Patient.findAllByDentist(dentist, [max: params.max, offset: params.offset]),
+                                     size    : dentist.patients.size()]
     }
 
     def create() {
@@ -59,11 +64,11 @@ class PatientController {
             response.sendError(404)
             return
         }
-        def teethUL = patient.mouth.teeth.sort{it.name}.reverse().findAll {it.name.contains 'UL' }
-        def teethUR = patient.mouth.teeth.sort{it.name}.findAll {it.name.contains 'UR' }
+        def teethUL = patient.mouth.teeth.sort { it.name }.reverse().findAll { it.name.contains 'UL' }
+        def teethUR = patient.mouth.teeth.sort { it.name }.findAll { it.name.contains 'UR' }
 
-        def teethDL = patient.mouth.teeth.sort{it.name}.reverse().findAll {it.name.contains 'DL' }
-        def teethDR = patient.mouth.teeth.sort{it.name}.findAll {it.name.contains 'DR' }
+        def teethDL = patient.mouth.teeth.sort { it.name }.reverse().findAll { it.name.contains 'DL' }
+        def teethDR = patient.mouth.teeth.sort { it.name }.findAll { it.name.contains 'DR' }
 
         def teethUP = []
         teethUP.addAll teethUL
@@ -75,6 +80,6 @@ class PatientController {
 
         println "----" + teethUP*.name
         println "----" + teethDOWN*.name
-        [patient: patient, teethUP : teethUP, teethDOWN : teethDOWN]
+        [patient: patient, teethUP: teethUP, teethDOWN: teethDOWN]
     }
 }

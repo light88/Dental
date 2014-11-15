@@ -48,27 +48,31 @@ grails.project.dependency.resolution = {
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-        runtime 'mysql:mysql-connector-java:5.1.31'
+        //runtime 'mysql:mysql-connector-java:5.1.31'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
-        test "org.grails:grails-datastore-test-support:1.0-grails-2.4"
+        //test "org.grails:grails-datastore-test-support:1.0-grails-2.4"
+//        runtime "org.grails:grails-maven-plugin:2.4.3"
     }
+
+//    pom true
 
     plugins {
         // plugins for the build system only
-        build ":tomcat:7.0.55"
+        //build ":tomcat:7.0.55"
         // plugins for the compile step
-        compile ":scaffolding:2.1.2"
-        compile ':cache:1.1.7'
-        compile ":asset-pipeline:1.9.9"
-        compile ":spring-security-core:2.0-RC4"
-        compile ":twitter-bootstrap:3.3.0"
+        //compile ":scaffolding:2.1.2"
+        //compile ':cache:1.1.7'
+        //compile ":asset-pipeline:1.9.9"
+        //compile ":spring-security-core:2.0-RC4"
+        //compile ":twitter-bootstrap:3.3.0"
 
-        compile ":mail:1.0.7"
 
         // plugins needed at runtime but not for compilation
-        runtime ":hibernate4:4.3.5.5"
-        runtime ":database-migration:1.4.0"
-        runtime ":jquery:1.11.1"
+        //runtime ":hibernate4:4.3.5.5"
+        //runtime ":database-migration:1.4.0"
+        //runtime ":jquery:1.11.1"
+
+
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.9.0"

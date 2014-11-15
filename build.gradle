@@ -1,0 +1,51 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath "org.grails:grails-gradle-plugin:2.1.1"
+  }
+}
+
+version "0.1"
+group "example"
+
+apply plugin: "grails"
+
+repositories {
+  jcenter()
+  grails.central() //creates a maven repo for the Grails Central repository (Core libraries and plugins)
+}
+
+grails {
+  grailsVersion = '2.4.4'
+  groovyVersion = '2.3.7'
+  //springLoadedVersion '1.2.0.RELEASE'
+}
+
+
+dependencies {
+    bootstrap 'org.grails.plugins:tomcat:7.0.55'
+
+    compile 'org.grails.plugins:scaffolding:2.1.2'
+    compile 'org.grails.plugins:cache:1.1.8'
+    compile 'org.grails.plugins:asset-pipeline:1.9.9'
+
+    //Additional asset-pipeline capabilities
+    compile 'org.grails.plugins:sass-asset-pipeline:1.9.1'
+    compile 'org.grails.plugins:less-asset-pipeline:1.10.0'
+    compile 'org.grails.plugins:coffee-asset-pipeline:1.9.0'
+    //compile 'org.grails.plugins:handlebars-asset-pipeline:1.0.0.3'
+
+    compile "org.grails.plugins:spring-security-core:2.0-RC4"
+    compile "org.grails.plugins:twitter-bootstrap:3.3.0"
+
+    runtime "org.grails.plugins:jquery:1.11.1"
+
+    runtime 'org.grails.plugins:database-migration:1.4.0'
+    runtime('org.grails.plugins:hibernate4:4.3.6.1') {
+        exclude module: 'xml-apis'
+    }
+
+    runtime 'mysql:mysql-connector-java:5.1.31'
+}
