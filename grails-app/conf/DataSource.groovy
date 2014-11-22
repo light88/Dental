@@ -46,10 +46,11 @@ environments {
 
     production {
         dataSource {
-            username = "fitness"
-            password = "ShKEZLLthZZBSdzX"
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://127.0.0.1:3306/fitness"
+            logSql = true
+            username = "root"
+            password = "rootpass"
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:mysql://localhost:3306/dental_prod"
 
 
             properties {
