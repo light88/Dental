@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="Dental dev" uuid="a09ac023-7fa5-46c8-b0e1-9b6679e7e438">
-    <database-info product="MySQL" version="5.6.17-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.29 ( Revision: alexander.soklakov@oracle.com-20140120140810-s44574olh90i6i4l )">
+  <data-source name="Dental dev" uuid="a09ac023-7fa5-46c8-b0e1-9b6679e7e438">
+    <database-info product="MySQL" version="5.6.17-log" jdbc-version="4.0" driver-name="MySQL-AB JDBC Driver" driver-version="mysql-connector-java-5.1.24 ( Revision: ${bzr.revision-id} )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
@@ -73,6 +73,13 @@
       <exported-key name="FK_nyyg5dlcs74rm1girctd3mubi" table="address" schema="" catalog="dental_dev" columns="country_id"/>
       <index name="UK_3s51q344kj9jse05r86moo9ka" unique="true" columns="country"/>
     </table>
+    <table name="currency" schema="" catalog="dental_dev" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="value" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_io2qrbsb9deu0m2pmn7f83ubu" table="service_price" schema="" catalog="dental_dev" columns="currency_id"/>
+    </table>
     <table name="dentist" schema="" catalog="dental_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
       <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -82,9 +89,10 @@
       <foreign-key name="FK_f0bevjjy8w0hgr43bihts57lq" columns="rating_id" ref-table="rating" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_gy8isr2retye7n1g9p44ta6sd" columns="profile_id" ref-table="profile" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="FK_76ve2aa11e92716yw2l43vlax" table="patient" schema="" catalog="dental_dev" columns="dentist_id"/>
+      <exported-key name="FK_l2395ccfveoptk4bxogr3rvpb" table="service_price" schema="" catalog="dental_dev" columns="dentist_id"/>
       <exported-key name="FK_gso7mht0i3akocoiyic9w8ifg" table="tooth_treatment" schema="" catalog="dental_dev" columns="dentist_id"/>
-      <index name="FK_f0bevjjy8w0hgr43bihts57lq" unique="false" columns="rating_id"/>
       <index name="FK_gy8isr2retye7n1g9p44ta6sd" unique="false" columns="profile_id"/>
+      <index name="FK_f0bevjjy8w0hgr43bihts57lq" unique="false" columns="rating_id"/>
     </table>
     <table name="mouth" schema="" catalog="dental_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
@@ -100,6 +108,7 @@
       <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="mail" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="notified" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="test" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="patient" schema="" catalog="dental_dev" type="TABLE">
@@ -118,8 +127,8 @@
       <foreign-key name="FK_r942ln0cs97gnetcmoied2mu3" columns="mouth_id" ref-table="mouth" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_76ve2aa11e92716yw2l43vlax" columns="dentist_id" ref-table="dentist" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_j8b4al0gjt5lj9f979r2sf9kf" columns="address_id" ref-table="address" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="FK_76ve2aa11e92716yw2l43vlax" unique="false" columns="dentist_id"/>
       <index name="FK_j8b4al0gjt5lj9f979r2sf9kf" unique="false" columns="address_id"/>
+      <index name="FK_76ve2aa11e92716yw2l43vlax" unique="false" columns="dentist_id"/>
       <index name="FK_r942ln0cs97gnetcmoied2mu3" unique="false" columns="mouth_id"/>
     </table>
     <table name="profile" schema="" catalog="dental_dev" type="TABLE">
@@ -152,6 +161,19 @@
       <primary-key name="PRIMARY" columns="id"/>
       <exported-key name="FK_it77eq964jhfqtu54081ebtio" table="user_role" schema="" catalog="dental_dev" columns="role_id"/>
       <index name="UK_irsamgnera6angm0prq1kemt2" unique="true" columns="authority"/>
+    </table>
+    <table name="service_price" schema="" catalog="dental_dev" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="version" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="currency_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="dentist_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="price" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="service" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_l2395ccfveoptk4bxogr3rvpb" columns="dentist_id" ref-table="dentist" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_io2qrbsb9deu0m2pmn7f83ubu" columns="currency_id" ref-table="currency" ref-schema="" ref-catalog="dental_dev" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_io2qrbsb9deu0m2pmn7f83ubu" unique="false" columns="currency_id"/>
+      <index name="FK_l2395ccfveoptk4bxogr3rvpb" unique="false" columns="dentist_id"/>
     </table>
     <table name="tooth" schema="" catalog="dental_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
@@ -4162,7 +4184,7 @@
       </prototype>
     </procedure>
   </data-source>
-  <data-source source="LOCAL" name="MySQL - light@10.10.200.1" uuid="bb9ea41d-57e2-48e8-9c94-6e1f6a204608">
+  <data-source name="MySQL - light@10.10.200.1" uuid="bb9ea41d-57e2-48e8-9c94-6e1f6a204608">
     <database-info product="MySQL" version="5.5.40-0+wheezy1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.29 ( Revision: alexander.soklakov@oracle.com-20140120140810-s44574olh90i6i4l )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>

@@ -48,4 +48,6 @@ dependencies {
     }
 
     runtime 'mysql:mysql-connector-java:5.1.31'
+
+//    test "org.grails.plugins:code-coverage:2.0.3-3"
 }
