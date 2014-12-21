@@ -24,24 +24,33 @@ environments {
         }
     }
     test {
-            // 91.245....
-        dataSource {
-            pooled = true
-            username = "light"
-            password = 'light$'
-            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost:3306/light"
-        }
-
-//        local
+        // 91.245....
 //        dataSource {
-//            logSql = true
-//            username = "root"
-//            password = "rootpass"
+//            pooled = true
+//            username = "light"
+//            password = 'light$'
 //            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-//            url = "jdbc:mysql://localhost:3306/dental_test"
+//            url = "jdbc:mysql://localhost:3306/light"
 //        }
 
+//        local
+        dataSource {
+            logSql = true
+            username = "root"
+            password = "rootpass"
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:mysql://localhost:3306/dental_test"
+        }
+
+
+//        dataSource {
+//            pooled = false
+//            driverClassName = "org.h2.Driver"
+//            username = "sa"
+//            password = ""
+//            dbCreate = "create"
+//            url = "jdbc:h2:mem:testDb"
+//        }
     }
 
     production {

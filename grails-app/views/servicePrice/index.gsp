@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Login</title>
+    <title>Service </title>
     <asset:stylesheet src="application.css"/>
 </head>
 
@@ -27,9 +27,9 @@
     </div>
 </g:if>
 
-<g:form class="form-signin" role="form" action="add" method="post">
+<g:form class="form-signin form-inline" role="form" action="add" method="post">
 
-    <h2 class="form-signin-heading">Please sign in</h2>
+    <h2 class="form-signin-heading">Fill in service and price</h2>
 
 
     <input class="form-control" placeholder="price" required autofocus type='text'

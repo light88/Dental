@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+</head>
+<body>
+fdfsfsfsds
+
+<div id="list"></div>
+
+<script type="application/javascript">
+
+    window.onload = function () {
+//        (function () {
+        var App = Backbone.Router.extend({
+            initialize: function () {
+                console.log('init route')
+            },
+            routes: {
+                '': 'start'
+            },
+            start: function () {
+                todoModel = new TodoModel({});
+
+                todoModel.on('print', function(){console.log(this.get('title'))});
+                todoCollection = new TodoCollection();
+                todoCollection.add(todoModel);
+                todoListView = new TodoListView({collection: todoCollection});
+                todoListView.render()
+            }
+        });
+
+        var TodoModel = Backbone.Model.extend({
+            defaults: {
+                title: "Test title",
+                desc: "lala la"
+            }
+        });
+
+        var TodoCollection = Backbone.Collection.extend({
+            model: TodoModel
+        });
+
+        var TodoListView = Backbone.View.extend({
+//            tagName: 'div',
+//            el : '#list',
+
+            initialize: function () {
+                this.collection.on('change', this.render, this);
+                this.collection.on('reset', this.reset, this);
+                this.listenTo(todoCollection, 'add', this.render);
+            },
+            render: function () {
+                this.reset();
+                view = this;
+                this.collection.forEach(function(model){
+                    var m = new TodoItemView({model: model/*, el: '#list'*/});
+                    m.render();
+                    view.$el.append(m.el)
+                })
+            },
+            reset: function(){
+                this.$el.html('')
+            }
+        });
+
+        var TodoItemView = Backbone.View.extend({
+            tagName: 'div',
+            initialize: function () {
+//                this.model.on('change', this.render, this)
+            },
+            render: function () {
+                var html = '<div> title = ' + this.model.get('title') + ' desc = ' + this.model.get('desc') + '</div>';
+                this.$el.html(html)
+            }
+        });
+
+        var app = new App();
+        Backbone.history.start();
+
+
+    }
+</script>
+<style type="text/css">
+    .a {
+        color: #f5f5f5;
+        width: 100px;
+        height: 100px;
+        margin: 20px;
+        background: grey;
+    }
+</style>
+
+<div class="a">dddd</div>
+</body>
+
+</html>

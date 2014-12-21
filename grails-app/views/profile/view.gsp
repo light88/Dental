@@ -9,8 +9,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Programs</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <g:layoutTitle>Programs</g:layoutTitle>
 </head>
 
 <body>

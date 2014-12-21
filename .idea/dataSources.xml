@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1696241326">
+  <component name="DataSourceManagerImpl" format="xml" hash="147668696">
     <data-source source="LOCAL" name="Dental dev" uuid="a09ac023-7fa5-46c8-b0e1-9b6679e7e438">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/dental_dev</jdbc-url>
       <libraries>
         <library>
-          <url>jar://C:/dev/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.24/a7d599d73b86a928303909b9be7573a4ea0ed28e/mysql-connector-java-5.1.24.jar!/</url>
+          <url>jar://C:/dev/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.31/95baa522c5ae4dbff61e8ebd1b2578665d6853a0/mysql-connector-java-5.1.31.jar!/</url>
         </library>
       </libraries>
     </data-source>

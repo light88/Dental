@@ -181,9 +181,17 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/index'         : ['permitAll'],
         '/about.gsp'     : ['permitAll'],
         '/assets/**'     : ['permitAll'],
-        '/**/js/**'      : ['permitAll'],
-        '/**/css/**'     : ['permitAll'],
-        '/**/images/**'  : ['permitAll'],
+//        '/**/js/**'      : ['permitAll'],
+//        '/**/css/**'     : ['permitAll'],
+//        '/**/images/**'  : ['permitAll'],
         '/**/favicon.ico': ['permitAll'],
         '/**'            : ['IS_AUTHENTICATED_FULLY']
 ]
+
+
+dental {
+    conf {
+        user = 'light'
+        pass = 'pass'
+    }
+}

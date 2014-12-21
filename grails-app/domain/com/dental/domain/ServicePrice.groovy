@@ -10,4 +10,8 @@ class ServicePrice {
     static constraints = {
 
     }
+
+    static mapping = {
+        price defaultValue : 0
+    }
 }

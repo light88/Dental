@@ -15,12 +15,12 @@ class PatientService {
 
         def profile = springSecurityService.currentUser.profile
         if (!profile)
-            throw new NullPointerException("logged profile is $profile")
+            throw new IllegalStateException("User is no logged in, profile =  $profile")
 
         def dentist = Dentist.findByProfile(profile)
 
         if (!dentist)
-            throw new NullPointerException("dentist is $dentist")
+            throw new IllegalStateException("User is no a dentist =  $dentist")
 
         params << [dateOfBirth: new Date()]
         def patient = new Patient(params)
@@ -49,6 +49,6 @@ class PatientService {
         println "p validate = " + patient.validate()
         println "p error = " + patient.errors
 
-        return dentist.save()
+        return dentist.save(failOnError: true)
     }
 }

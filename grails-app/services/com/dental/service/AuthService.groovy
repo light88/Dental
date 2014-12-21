@@ -7,11 +7,13 @@ import grails.transaction.Transactional
 class AuthService {
 
     def signup(params) {
+
         println "params -- ${params}"
 
         def user = new User(params)
 
         def profile = new Profile(params)
+
         profile.dateOfBirth = new Date()
         profile.save(flush: true, failOnError: true)
 
@@ -24,8 +26,8 @@ class AuthService {
         user.profile = profile
         user.save(flush: true, failOnError: true)
 
-        def roleSportsman = Role.findByAuthority(RoleService.ROLE_DENTIST)
-        UserRole.create(user, roleSportsman, true)
+        def roleDentist = Role.findByAuthority(RoleService.ROLE_DENTIST)
+        UserRole.create(user, roleDentist, true)
         return user
     }
 

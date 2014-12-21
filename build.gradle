@@ -1,27 +1,39 @@
 buildscript {
-  repositories {
-    jcenter()
-  }
-  dependencies {
-    classpath "org.grails:grails-gradle-plugin:2.1.1"
-  }
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.grails:grails-gradle-plugin:2.1.1"
+        classpath "org.flywaydb:flyway-gradle-plugin:3.1"
+    }
 }
 
-version "0.1"
+version "0.2"
 group "example"
 
 apply plugin: "grails"
+apply plugin: 'flyway'
 
 repositories {
-  jcenter()
-  grails.central() //creates a maven repo for the Grails Central repository (Core libraries and plugins)
+    jcenter()
+    grails.central() //creates a maven repo for the Grails Central repository (Core libraries and plugins)
 }
 
 grails {
-  grailsVersion = '2.4.4'
-  groovyVersion = '2.3.7'
-  //springLoadedVersion '1.2.0.RELEASE'
+    grailsVersion = '2.4.4'
+    groovyVersion = '2.3.7'
+    //springLoadedVersion '1.2.0.RELEASE'
 }
+
+//flyway {
+//    user = 'myUser'
+//    password = 'mySecretPwd'
+//    schemas = ['schema1', 'schema2', 'schema3']
+//    placeholders = [
+//            'keyABC': 'valueXYZ'
+//            'otherplaceholder': 'value123'
+//    ]
+//}
 
 
 dependencies {
@@ -33,8 +45,8 @@ dependencies {
 
     //Additional asset-pipeline capabilities
     compile 'org.grails.plugins:sass-asset-pipeline:1.9.1'
-    compile 'org.grails.plugins:less-asset-pipeline:1.10.0'
-    compile 'org.grails.plugins:coffee-asset-pipeline:1.9.0'
+//    compile 'org.grails.plugins:less-asset-pipeline:1.10.0'
+//    compile 'org.grails.plugins:coffee-asset-pipeline:1.9.0'
     //compile 'org.grails.plugins:handlebars-asset-pipeline:1.0.0.3'
 
     compile "org.grails.plugins:spring-security-core:2.0-RC4"
